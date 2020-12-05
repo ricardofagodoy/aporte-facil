@@ -13,6 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import {LayoutModule} from '@angular/cdk/layout';
 
@@ -32,6 +33,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
+    MatGridListModule,
     LayoutModule
   ],
   providers: [],

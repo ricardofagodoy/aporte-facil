@@ -28,6 +28,15 @@ $aporte-facil-theme: mat-light-theme((
   )
 ));
 
+// Custom typografy
+$custom-typography: mat-typography-config(
+  $font-family: 'Comfortaa, monospace',
+  $headline: mat-typography-level(32px, normal, 700),
+  $body-1: mat-typography-level(16px, normal, 500)
+);
+
+@include angular-material-typography($custom-typography);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -35,5 +44,10 @@ $aporte-facil-theme: mat-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: "Comfortaa";
+  src: url("./assets/fonts/Comfortaa-Regular.ttf") format("truetype")
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
