@@ -10,19 +10,46 @@
 }
 
 .welcome {
-    //float: left;
     font-size: 4vw;
     width: 40%;
 }
 
 .total {
-    //float: right;
     font-size: 2vw;
-    width: 40%;
+    text-align: right;
+    width: 30%;
     
     .value {
         font-weight: bold; 
         color: rgba($color: #005a0c, $alpha: 1.0);
         font-size: 3vw;
+    }
+}
+
+.table-filter {
+    margin: 2vh 0;
+    font-size: 1rem;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    margin: 0 0 10vh 0;
+}
+
+.action-buttons {
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    button {
+        font-size: 1rem;
+        margin: 0 5px;
+        max-width: 40%;
+    }
+    
+    mat-icon {
+        font-size: 2rem;
     }
 }

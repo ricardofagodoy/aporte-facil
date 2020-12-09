@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { BrlPipe } from './home/brl.pipe'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -13,7 +14,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {LayoutModule} from '@angular/cdk/layout';
 
@@ -21,7 +25,8 @@ import {LayoutModule} from '@angular/cdk/layout';
   declarations: [
     AppComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    BrlPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatGridListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatFormFieldModule,
     LayoutModule
   ],
   providers: [],
