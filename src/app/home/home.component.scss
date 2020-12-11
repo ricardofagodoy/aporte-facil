@@ -1,40 +1,78 @@
 .flex-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.divisor {
-    margin: 2vmax 0;
-    border: 1px solid #000;
+    justify-content: flex-end;
 }
 
 .welcome {
     font-size: 4vw;
     width: 40%;
+    margin-right: auto;
 }
 
 .total {
+    
+    position: relative;
     font-size: 2vw;
-    text-align: right;
-    width: 30%;
+    margin-left: 3vw;
     
     .value {
         font-weight: bold; 
         color: rgba($color: #005a0c, $alpha: 1.0);
         font-size: 3vw;
     }
+    
+    .saldo {
+        color: #3f51b5;
+    }
+    
+    mat-icon {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        font-size: 2.5vw;
+        cursor: pointer;
+        transform: translate(-50%, 0);
+    }
+}
+
+.divisor {
+    margin: 2vh 0;
+    border: 1px solid #000;
 }
 
 .table-filter {
-    margin: 2vh 0;
     font-size: 1rem;
     width: 100%;
 }
 
-table {
+.table-container {
+    overflow: visible;
+}
+
+mat-table {
     width: 100%;
     margin: 0 0 10vh 0;
+    
+    mat-header-cell, 
+    mat-cell, 
+    mat-footer-cell {
+        text-align: center;
+        justify-content:center;
+    }
+
+    mat-footer-row {
+        padding: 2vh 0;
+    }
+
+    mat-form-field {
+        text-align: center;
+        width: 70%;
+    }
+
+    .mat-column-editar {
+        flex: 0 0 3vw;
+    }
 }
 
 .action-buttons {

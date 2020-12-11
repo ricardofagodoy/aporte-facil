@@ -16,7 +16,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   // Table
   dataSource : MatTableDataSource<any[]>
-  displayedColumns: string[] = [ "ativo", "quantidade", "peso", "cotacao", "valor", "acao", "valor_acao" ]
+  displayedColumns: string[] = [ "editar", "ativo", "quantidade", "peso", "cotacao", "valor", "acao", "valor_acao", "concluir" ]
 
   @ViewChild(MatSort) sort: MatSort;
 

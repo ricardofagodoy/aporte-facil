@@ -11,6 +11,8 @@ export class MenuComponent implements OnDestroy {
   public mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   
+  public name : string = "Aporte Fácil"
+
   public options = [
     {
       title: 'Minha carteira',
