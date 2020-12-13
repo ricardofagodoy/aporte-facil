@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 import {LayoutModule} from '@angular/cdk/layout';
 
@@ -32,6 +34,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -42,6 +46,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatInputModule,
     MatSortModule,
     MatFormFieldModule,
+    MatSelectModule,
     LayoutModule
   ],
   providers: [],

@@ -2,20 +2,30 @@
     <div class="flex-container">
         
         <div class="welcome">
-            <span>Sua carteira,<br/>{{name}}</span>
+            <span>Sua carteira,<br/>{{carteira.name}}</span>
         </div>
         
         <div class="total">
             <p>Saldo</p>
-            <span mat-icon-button aria-label="editar">
-                <mat-icon>unfold_more</mat-icon>
-            </span>
-            <p class="value saldo">{{3000 | brl}}</p>
+            
+            <div *ngIf="!saldo_editable">
+                <span mat-icon-button aria-label="editar">
+                    <mat-icon (click)="saldo_editable = true">edit</mat-icon>
+                </span>
+                <p class="value saldo">{{carteira.saldo | brl}}</p>
+            </div>
+            
+            <div class="edit-saldo" *ngIf="saldo_editable">
+                <span mat-icon-button aria-label="editar">
+                    <mat-icon (click)="alterarSaldo(saldo_input.value)">check</mat-icon>
+                </span>
+                <input #saldo_input matInput type="number" min="0" max="10000000" step="10" class="value saldo" [value]="carteira.saldo.toFixed(2)" />
+            </div>
         </div>
         
         <div class="total">
             <p>Investido</p>
-            <p class="value">{{value | brl}}</p>
+            <p class="value">{{investido | brl}}</p>
         </div>
     </div>
     
@@ -31,10 +41,10 @@
         </div>
     -->
     
-    <mat-form-field class="table-filter">
+    <!-- <mat-form-field class="table-filter">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. PETR4" #input>
-    </mat-form-field>
+    </mat-form-field> -->
     
     <div class="table-container">
         
@@ -42,41 +52,73 @@
             
             <ng-container matColumnDef="editar">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <button mat-icon-button aria-label="editar">
+                <mat-cell *matCellDef="let element; let i = index">
+                    
+                    <button *ngIf="i != ativo_editable_row" mat-icon-button aria-label="editar" (click)="editarAtivo(i)">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    
+                    <button *ngIf="i == ativo_editable_row" mat-icon-button aria-label="salvar" (click)="salvarAtivo()">
+                        <mat-icon>check</mat-icon>
+                    </button>
+                    <button *ngIf="i == ativo_editable_row" mat-icon-button aria-label="deletar" (click)="deletarAtivo(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    
                 </mat-cell>
                 
-                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef>
+                    <button mat-icon-button aria-label="concluir" (click)="adicionarAtivo()">
+                        <mat-icon style="color: green">add</mat-icon>
+                    </button>
+                </mat-footer-cell>
             </ng-container>
             
-            <ng-container matColumnDef="ativo">
+            <ng-container matColumnDef="ticker">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="w-75">{{element.ativo}}</mat-cell>
+                <mat-cell *matCellDef="let element" class="w-75">{{element.ticker}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef>
                     <mat-form-field>
-                        <input matInput placeholder="Ex. PETR4">
+                        <mat-select [(ngModel)]="novo_ativo.ticker">
+                            <mat-option *ngFor="let ticker of ativos" [value]="ticker">{{ticker}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="quantidade">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Qtde.</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.quantidade}}</mat-cell>
+                <mat-cell *matCellDef="let element; let i = index">
+                    
+                    <span *ngIf="i != ativo_editable_row">{{element.quantidade}}</span>
+                    
+                    <mat-form-field *ngIf="i == ativo_editable_row">
+                        <input type="number" matInput [(ngModel)]="element.quantidade" min="0" max="1000000" step="1">
+                    </mat-form-field>
+                    
+                </mat-cell>
+                
                 <mat-footer-cell *matFooterCellDef>
                     <mat-form-field>
-                        <input type="number" matInput placeholder="Ex. 5">
+                        <input type="number" matInput [(ngModel)]="novo_ativo.quantidade" min="0" max="1000000" step="1" placeholder="Ex. 5">
                     </mat-form-field>
                 </mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="peso">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Peso</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.peso}}</mat-cell>
+                <mat-cell *matCellDef="let element; let i = index">
+                    
+                    <span *ngIf="i != ativo_editable_row">{{element.peso}}</span>
+                    
+                    <mat-form-field *ngIf="i == ativo_editable_row">
+                        <input type="number" matInput [(ngModel)]="element.peso" min="0" max="100" step="1">
+                    </mat-form-field>
+                    
+                </mat-cell>
                 <mat-footer-cell *matFooterCellDef>
                     <mat-form-field>
-                        <input type="number" matInput placeholder="Ex. 10">
+                        <input type="number" matInput [(ngModel)]="novo_ativo.peso" min="0" max="100" step="1" placeholder="Ex. 10">
                     </mat-form-field>
                 </mat-footer-cell>
             </ng-container>
@@ -106,113 +148,19 @@
             </ng-container>
             
             <ng-container matColumnDef="concluir">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Executar</mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <button mat-icon-button aria-label="concluir">
                         <mat-icon style="color: green">check</mat-icon>
                     </button>
                 </mat-cell>
                 
-                <mat-footer-cell *matFooterCellDef>
-                    <button mat-icon-button aria-label="concluir">
-                        <mat-icon style="color: green">add</mat-icon>
-                    </button>
-                </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
         </mat-table>
-        
-        <!-- <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-            
-            <ng-container matColumnDef="editar">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let element" colspan="1">
-                    <button mat-icon-button aria-label="editar">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button aria-label="deletar">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-                
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-            
-            <ng-container matColumnDef="ativo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</th>
-                <td mat-cell *matCellDef="let element" class="w-75">{{element.ativo}}</td>
-                <td mat-footer-cell *matFooterCellDef>
-                    <mat-form-field>
-                        <input matInput placeholder="Ex. PETR4">
-                    </mat-form-field>
-                </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="quantidade">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Qtde.</th>
-                <td mat-cell *matCellDef="let element">{{element.quantidade}}</td>
-                <td mat-footer-cell *matFooterCellDef>
-                    <mat-form-field>
-                        <input type="number" matInput placeholder="Ex. 5">
-                    </mat-form-field>
-                </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="peso">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Peso</th>
-                <td mat-cell *matCellDef="let element">{{element.peso}}</td>
-                <td mat-footer-cell *matFooterCellDef>
-                    <mat-form-field>
-                        <input type="number" matInput placeholder="Ex. 10">
-                    </mat-form-field>
-                </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="cotacao">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cotação</th>
-                <td mat-cell *matCellDef="let element">{{element.cotacao | brl}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-            
-            <ng-container matColumnDef="valor">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
-                <td mat-cell *matCellDef="let element">{{(element.cotacao * element.quantidade) | brl}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-            
-            <ng-container matColumnDef="acao">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ação</th>
-                <td mat-cell *matCellDef="let element">{{element.acao}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-            
-            <ng-container matColumnDef="valor_acao">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
-                <td mat-cell *matCellDef="let element">{{(element.acao * element.cotacao) | brl}}</td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-            
-            <ng-container matColumnDef="concluir">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button aria-label="concluir">
-                        <mat-icon style="color: green">check</mat-icon>
-                    </button>
-                </td>
-                
-                <td mat-footer-cell *matFooterCellDef>
-                    <button mat-icon-button aria-label="concluir">
-                        <mat-icon style="color: green">add</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-            
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-        </table> -->
     </div>
 </div>

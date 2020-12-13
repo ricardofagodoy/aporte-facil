@@ -25,19 +25,30 @@
     .saldo {
         color: #3f51b5;
     }
-    
+
     mat-icon {
         position: absolute;
         top: 0px;
         right: 0px;
-        font-size: 2.5vw;
+        font-size: 2vw;
         cursor: pointer;
-        transform: translate(-50%, 0);
+    }
+    input[type=number] {
+        border-bottom: 1px solid grey;
+    }
+}
+
+.edit-saldo {
+    
+    max-width: 20vw;
+
+    mat-icon {
+        color: green;
     }
 }
 
 .divisor {
-    margin: 2vh 0;
+    margin: 4vh 0;
     border: 1px solid #000;
 }
 

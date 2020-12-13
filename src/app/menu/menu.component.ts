@@ -20,11 +20,6 @@ export class MenuComponent implements OnDestroy {
       icon: 'pie_chart'
     },
     {
-      title: 'Deletar carteira',
-      route: 'deletar',
-      icon: 'delete'
-    },
-    {
       title: 'Quem somos?',
       route: 'sobre',
       icon: 'emoji_people'
