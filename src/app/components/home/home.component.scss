@@ -52,16 +52,8 @@
     border: 1px solid #000;
 }
 
-.table-filter {
-    font-size: 1rem;
-    width: 100%;
-}
-
-.table-container {
-    overflow: visible;
-}
-
 mat-table {
+    
     width: 100%;
     margin: 0 0 10vh 0;
     
@@ -83,22 +75,5 @@ mat-table {
 
     .mat-column-editar {
         flex: 0 0 3vw;
-    }
-}
-
-.action-buttons {
-    
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    
-    button {
-        font-size: 1rem;
-        margin: 0 5px;
-        max-width: 40%;
-    }
-    
-    mat-icon {
-        font-size: 2rem;
     }
 }

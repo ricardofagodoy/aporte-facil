@@ -1,8 +1,8 @@
-<div>
+<div *ngIf="carteira">
     <div class="flex-container">
         
         <div class="welcome">
-            <span>Sua carteira,<br/>{{carteira.name}}</span>
+            <span>Sua carteira,<br/>{{name}}</span>
         </div>
         
         <div class="total">
@@ -31,24 +31,9 @@
     
     <div class="divisor"></div>
     
-    <!--
-        <div class="action-buttons">
-            <button mat-raised-button color="primary">Novo aporte</button>
-            <button mat-raised-button color="primary">Novo ativo</button>
-            <button mat-icon-button aria-label="Atualizar ativos">
-                <mat-icon>refresh</mat-icon>
-            </button>
-        </div>
-    -->
-    
-    <!-- <mat-form-field class="table-filter">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. PETR4" #input>
-    </mat-form-field> -->
-    
     <div class="table-container">
         
-        <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             
             <ng-container matColumnDef="editar">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -75,7 +60,7 @@
             </ng-container>
             
             <ng-container matColumnDef="ticker">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Ativo</mat-header-cell>
                 <mat-cell *matCellDef="let element" class="w-75">{{element.ticker}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef>
                     <mat-form-field>
@@ -87,7 +72,7 @@
             </ng-container>
             
             <ng-container matColumnDef="quantidade">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Qtde.</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Qtde.</mat-header-cell>
                 <mat-cell *matCellDef="let element; let i = index">
                     
                     <span *ngIf="i != ativo_editable_row">{{element.quantidade}}</span>
@@ -106,7 +91,7 @@
             </ng-container>
             
             <ng-container matColumnDef="peso">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Peso</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Peso</mat-header-cell>
                 <mat-cell *matCellDef="let element; let i = index">
                     
                     <span *ngIf="i != ativo_editable_row">{{element.peso}}</span>
@@ -124,33 +109,33 @@
             </ng-container>
             
             <ng-container matColumnDef="cotacao">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Cotação</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Cotação</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.cotacao | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="valor">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Valor</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{(element.cotacao * element.quantidade) | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="acao">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Ação</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.acao}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="valor_acao">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Valor</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{(element.acao * element.cotacao) | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="concluir">
                 <mat-header-cell *matHeaderCellDef>Executar</mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <button mat-icon-button aria-label="concluir">
+                <mat-cell *matCellDef="let element; let i = index">
+                    <button *ngIf="element.acao > 0" mat-icon-button aria-label="concluir" (click)="executarCompra(i)">
                         <mat-icon style="color: green">check</mat-icon>
                     </button>
                 </mat-cell>

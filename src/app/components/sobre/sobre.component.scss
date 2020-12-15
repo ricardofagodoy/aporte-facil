@@ -1,0 +1,19 @@
+.sobre-container {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.sobre-card {
+
+    padding: 8% 5%;
+    text-align: center;
+
+    img {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}

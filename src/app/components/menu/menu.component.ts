@@ -16,17 +16,17 @@ export class MenuComponent implements OnDestroy {
   public options = [
     {
       title: 'Minha carteira',
-      route: '',
+      route: '/home',
       icon: 'pie_chart'
     },
     {
       title: 'Quem somos?',
-      route: 'sobre',
+      route: '/sobre',
       icon: 'emoji_people'
     },
     {
       title: 'Fazer logout',
-      route: 'logout',
+      route: '/logout',
       icon: 'exit_to_app'
     }
   ]

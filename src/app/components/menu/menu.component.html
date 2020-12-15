@@ -11,7 +11,7 @@
         <mat-nav-list>
             <mat-list-item *ngFor="let option of options">
                 <mat-icon mat-list-icon>{{option.icon}}</mat-icon>
-                <a [href]="option.route" mat-line>{{option.title}}</a>
+                <a [routerLink]="option.route" mat-line>{{option.title}}</a>
              </mat-list-item>
         </mat-nav-list>
       </mat-sidenav>
