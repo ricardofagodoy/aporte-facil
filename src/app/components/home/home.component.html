@@ -1,3 +1,7 @@
+<div *ngIf="!carteira">
+    <mat-spinner></mat-spinner>
+</div>
+
 <div *ngIf="carteira">
     <div class="flex-container">
         
@@ -43,7 +47,7 @@
                         <mat-icon>edit</mat-icon>
                     </button>
                     
-                    <button *ngIf="i == ativo_editable_row" mat-icon-button aria-label="salvar" (click)="salvarAtivo()">
+                    <button *ngIf="i == ativo_editable_row" mat-icon-button aria-label="salvar" (click)="salvarAtivo(element)">
                         <mat-icon>check</mat-icon>
                     </button>
                     <button *ngIf="i == ativo_editable_row" mat-icon-button aria-label="deletar" (click)="deletarAtivo(i)">
@@ -115,20 +119,20 @@
             </ng-container>
             
             <ng-container matColumnDef="valor">
-                <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Valor investido</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{(element.cotacao * element.quantidade) | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
-            <ng-container matColumnDef="acao">
-                <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.acao}}</mat-cell>
+            <ng-container matColumnDef="desbalanco">
+                <mat-header-cell *matHeaderCellDef>Desbalanço</mat-header-cell>
+                <mat-cell *matCellDef="let element" [style.color]="element.desbalanco < 0 ? 'red' : 'green'" >{{element.desbalanco | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
-            
-            <ng-container matColumnDef="valor_acao">
-                <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{(element.acao * element.cotacao) | brl}}</mat-cell>
+
+            <ng-container matColumnDef="acao">
+                <mat-header-cell *matHeaderCellDef>Comprar</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.acao > 0 ? element.acao : 'Aguardar'}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             

@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   // Table
   dataSource : MatTableDataSource<Ativo>
-  displayedColumns: string[] = [ "editar", "ticker", "quantidade", "peso", "cotacao", "valor", "acao", "valor_acao", "concluir" ]
+  displayedColumns: string[] = [ "editar", "ticker", "quantidade", "peso", "cotacao", "valor", "desbalanco", "acao", "concluir" ]
 
   constructor(private service : HomeService,
               private loginService : LoginService) {}
@@ -64,10 +64,13 @@ export class HomeComponent implements OnInit {
   }
 
   // After saving edited row
-  salvarAtivo() {
+  salvarAtivo(element : Ativo) {
 
     // No rows in edit mode
     delete this.ativo_editable_row;
+
+    element.quantidade = Math.max(element.quantidade, 0)
+    element.peso = Math.max(element.peso, 0)
 
     this.updateCarteira() 
   }
@@ -86,7 +89,9 @@ export class HomeComponent implements OnInit {
 
   adicionarAtivo() {
 
-    if (!this.novo_ativo.ticker || !this.novo_ativo.quantidade || !this.novo_ativo.peso)
+    if (!this.novo_ativo.ticker || 
+        this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0 || 
+        this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0)
       return
 
     this.carteira.ativos.push(this.novo_ativo)
@@ -100,6 +105,7 @@ export class HomeComponent implements OnInit {
   executarCompra(index) {
     const ativo = this.carteira.ativos[index]
     ativo.quantidade+=ativo.acao
+    this.carteira.saldo-=ativo.acao*ativo.cotacao
 
     this.updateCarteira()
   }

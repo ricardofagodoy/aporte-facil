@@ -9,9 +9,9 @@
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-            <mat-list-item *ngFor="let option of options">
+            <mat-list-item *ngFor="let option of options" (click)="navigateTo(option.route)">
                 <mat-icon mat-list-icon>{{option.icon}}</mat-icon>
-                <a [routerLink]="option.route" mat-line>{{option.title}}</a>
+                <a mat-line>{{option.title}}</a>
              </mat-list-item>
         </mat-nav-list>
       </mat-sidenav>

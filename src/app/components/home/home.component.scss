@@ -73,7 +73,11 @@ mat-table {
         width: 70%;
     }
 
-    .mat-column-editar {
-        flex: 0 0 3vw;
-    }
+    // .mat-column-editar {
+    //     flex: 0 0 3vw;
+    // }
+}
+
+mat-spinner {
+    margin: 0 auto;
 }

@@ -31,6 +31,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
@@ -62,6 +63,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     LayoutModule
   ],
   providers: [{
