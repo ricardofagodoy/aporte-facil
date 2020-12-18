@@ -1,6 +1,7 @@
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 import { Injectable } from "@angular/core";
 import { LoginService } from "./login.service";
+import { Observable, of } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -9,18 +10,23 @@ export class AuthenticationGuard implements CanActivate {
 
     constructor(private loginService : LoginService, private router: Router) {}
     
-    async canActivate(
+    canActivate(
       next: ActivatedRouteSnapshot,
-      state: RouterStateSnapshot): Promise<boolean> {
+      state: RouterStateSnapshot): Observable<boolean> {
 
-        //  Logged In
-        if (this.loginService.isLoggedIn())
-            return true;
+        console.log('guard')
 
-        // Not logged in, do it
-        if (!await this.loginService.login())
-          return this.router.navigate(['login']) 
-        
-        return true
+        // Should be automatic login?
+        if (!this.loginService.getAutoLogin()) {
+          this.router.navigate(['/login'])
+          return of(false)
+        }
+
+        // Already authenticated?
+        if (this.loginService.getLoggedUser())
+          return of(true)
+
+        // Then wait for auth!
+        return this.loginService.waitForLogin()
     }
   }

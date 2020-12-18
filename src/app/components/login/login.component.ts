@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,13 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService) {}
+  constructor(private loginService : LoginService, private router : Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginService.waitForLogin().subscribe(() => {
+      this.router.navigate(['/home'])
+    })
+  }
   
   signInWithGoogle(): void {
     this.loginService.signInWithGoogle()

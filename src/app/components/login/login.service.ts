@@ -1,69 +1,77 @@
 import { Injectable } from "@angular/core";
 import { ApiRepository } from "../../repository/api/ApiRepository";
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from "angularx-social-login";
-import { Router } from "@angular/router";
+import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
     
-    private readonly ID_TOKEN : string = "idToken"
+    private logged : Subject<boolean> = new Subject<boolean>()
+    private autoLogin
     private user : string
-
+    
     constructor(private authService: SocialAuthService, 
-                private repository : ApiRepository,
-                private router: Router) {
-        
-        // After oAuth successfully authenticated
-        this.authService.authState.subscribe((user : SocialUser) => {
+        private repository : ApiRepository) {
 
-            // Success
-            if (user != null) {
+            this.autoLogin = localStorage.getItem('autoLogin') || false
+            
+            // After oAuth successfully authenticated
+            this.authService.authState.subscribe((user : SocialUser) => {
                 
-                // Stores token locally
-                localStorage.setItem(this.ID_TOKEN, user.idToken)
+                // Success
+                if (user != null) {
+                    
+                    console.log('Got social user')
+                    
+                    // Logs in the backend
+                    this.login(user.idToken)
+                }
+            });
+        }
+        
+        async login(token) : Promise<boolean> {
+            
+            try {
+                // Login returns user's name on success
+                this.user = await this.repository.login(token)
 
-                // Logs in the backend
-                this.login().then(() => this.router.navigate(['home']))
+                console.log('Got cookie from backend')
+
+                this.logged.next(true)
+                this.autoLogin = true
+                localStorage.setItem('autoLogin', 'true')
+
+                return true
+            } catch(e) {
+                console.log('Fail to login: ' + JSON.stringify(e))
             }
-        });
-    }
-
-    async login() : Promise<boolean> {
-
-        const token = localStorage.getItem(this.ID_TOKEN)
-
-        // No token, login not successful
-        if (token == null)
+            
             return false
-
-        try {
-            // Login returns user's name on success
-            this.user = await this.repository.login(token)
-            return true
-        } catch(e) {
-            console.log('Fail to login: ' + JSON.stringify(e))
+        }
+        
+        waitForLogin() : Subject<boolean> {
+            return this.logged
+        }
+        
+        getLoggedUser() {
+            return this.user
         }
 
-        return false
+        getAutoLogin() {
+            return this.autoLogin
+        }
+        
+        signInWithGoogle(): void {
+            this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        }
+        
+        signOut(): void {
+            this.authService.signOut(true)
+            this.user = undefined
+            this.logged.next(false)
+            this.autoLogin = false
+            localStorage.removeItem('autoLogin')
+        }
     }
-
-    isLoggedIn() {
-        return this.user != undefined
-    }
-
-    getLoggedUser() {
-        return this.user
-    }
-    
-    signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    }
-
-    signOut(): void {
-        this.authService.signOut(true)
-        localStorage.removeItem(this.ID_TOKEN)
-        this.user = undefined
-    }
-}

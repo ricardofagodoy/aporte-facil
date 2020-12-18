@@ -1,6 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from "@angular/router";
 import { Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,25 +15,9 @@ export class MenuComponent implements OnDestroy {
   
   public name : string = "Aporte Fácil"
 
-  public options = [
-    {
-      title: 'Minha carteira',
-      route: '/home',
-      icon: 'pie_chart'
-    },
-    {
-      title: 'Quem somos?',
-      route: '/sobre',
-      icon: 'emoji_people'
-    },
-    {
-      title: 'Fazer logout',
-      route: '/logout',
-      icon: 'exit_to_app'
-    }
-  ]
-  
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router : Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, 
+              private router : Router,
+              public loginService : LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
