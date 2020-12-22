@@ -4,6 +4,9 @@ import { HomeService } from './home.service';
 import { Carteira } from '../../models/carteira';
 import { Ativo } from '../../models/ativo';
 import { LoginService } from '../login/login.service';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +16,13 @@ import { LoginService } from '../login/login.service';
 export class HomeComponent implements OnInit {
 
   // View bindings
-  ativos : Array<string>
   carteira : Carteira
   name : string
+
+  // Ativos
+  ativos : string[]
+  ativosAutoComplete : string[]
+  myControl = new FormControl();
 
   novo_ativo : any = {}
   investido : number
@@ -43,7 +50,19 @@ export class HomeComponent implements OnInit {
     this.name = this.loginService.getLoggedUser()
 
     // Load ativos
-    this.service.getAtivos().then(ativos => this.ativos = ativos)
+    this.service.getAtivos().then(ativos => {
+      this.ativos = ativos
+      this.ativoChanged()
+    })
+  }
+
+  ativoChanged() {
+    this.ativosAutoComplete = this._filterAtivo(this.novo_ativo.ticker)
+  }
+
+  private _filterAtivo(name: string = ''): string[] {
+    const filterValue = name.toLowerCase();
+    return this.ativos.filter(ativo => ativo.toLowerCase().indexOf(filterValue) === 0);
   }
 
   // After saldo being changed and saved
@@ -89,7 +108,7 @@ export class HomeComponent implements OnInit {
 
   adicionarAtivo() {
 
-    if (!this.novo_ativo.ticker || 
+    if (!this.novo_ativo.ticker || this.ativos.indexOf(this.novo_ativo.ticker) < 0 ||
         this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0 || 
         this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0)
       return

@@ -68,9 +68,13 @@
                 <mat-cell *matCellDef="let element" class="w-75">{{element.ticker}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef>
                     <mat-form-field>
-                        <mat-select [(ngModel)]="novo_ativo.ticker">
-                            <mat-option *ngFor="let ticker of ativos" [value]="ticker">{{ticker}}</mat-option>
-                        </mat-select>
+                        <mat-label>Ativo</mat-label>
+                        <input type="text" matInput (keyup)="ativoChanged()" [matAutocomplete]="auto" [(ngModel)]="novo_ativo.ticker">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let ticker of ativosAutoComplete" [value]="ticker">
+                                {{ticker}}
+                            </mat-option>
+                        </mat-autocomplete>
                     </mat-form-field>
                 </mat-footer-cell>
             </ng-container>
@@ -129,7 +133,7 @@
                 <mat-cell *matCellDef="let element" [style.color]="element.desbalanco < 0 ? 'red' : 'green'" >{{element.desbalanco | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
-
+            
             <ng-container matColumnDef="acao">
                 <mat-header-cell *matHeaderCellDef>Comprar</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.acao > 0 ? element.acao : 'Aguardar'}}</mat-cell>

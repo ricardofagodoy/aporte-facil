@@ -29,9 +29,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
@@ -61,7 +61,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatInputModule,
     MatSortModule,
     MatFormFieldModule,
-    MatSelectModule,
+    MatAutocompleteModule,
     HttpClientModule,
     MatProgressSpinnerModule,
     LayoutModule
