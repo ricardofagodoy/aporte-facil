@@ -1,0 +1,7 @@
+dispatch:
+  
+  - url: "backend.aportefacil.com.br/*"
+    service: backend
+
+  - url: "aportefacil.com.br/*"
+    service: default
