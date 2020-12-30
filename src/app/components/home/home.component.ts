@@ -5,8 +5,6 @@ import { Carteira } from '../../models/carteira';
 import { Ativo } from '../../models/ativo';
 import { LoginService } from '../login/login.service';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',

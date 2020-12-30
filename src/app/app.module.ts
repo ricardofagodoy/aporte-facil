@@ -32,6 +32,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
@@ -64,6 +65,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatAutocompleteModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatSlideToggleModule,
     LayoutModule
   ],
   providers: [{
