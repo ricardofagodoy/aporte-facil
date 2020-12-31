@@ -120,13 +120,13 @@
             
             <ng-container matColumnDef="cotacao">
                 <mat-header-cell *matHeaderCellDef>Cotação</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.cotacao | brl}}</mat-cell>
+                <mat-cell *matCellDef="let element">{{element.infoAtivos.cotacao | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
             <ng-container matColumnDef="valor">
                 <mat-header-cell *matHeaderCellDef>Total investido</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{(element.cotacao * element.quantidade) | brl}}</mat-cell>
+                <mat-cell *matCellDef="let element">{{(element.infoAtivos.cotacao * element.quantidade) | brl}}</mat-cell>
                 <mat-footer-cell *matFooterCellDef></mat-footer-cell>
             </ng-container>
             
@@ -164,7 +164,7 @@
             
             <div class="sub-card-container">
                 <div class="ticker">{{ativo.ticker}}</div>
-                <div class="cotacao">{{ativo.cotacao | brl}}</div>
+                <div class="cotacao">{{ativo.infoAtivos.cotacao | brl}}</div>
             </div>
 
             <div class="sub-card-container">
@@ -185,12 +185,12 @@
                 </div>
 
 
-                <div><b>Total:</b> {{(ativo.quantidade * ativo.cotacao) | brl}}</div>
+                <div><b>Total:</b> {{(ativo.quantidade * ativo.infoAtivos.cotacao) | brl}}</div>
             </div>
 
             <div class="sub-card-container">
                 <div><b>Comprar:</b> {{ativo.acao}}</div>
-                <div><b>Total:</b> {{(ativo.acao * ativo.cotacao) | brl}}</div>
+                <div><b>Total:</b> {{(ativo.acao * ativo.infoAtivos.cotacao) | brl}}</div>
             </div>
 
             <div class="sub-card-container buttons">

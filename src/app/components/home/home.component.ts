@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
   executarCompra(index) {
     const ativo = this.carteira.ativos[index]
     ativo.quantidade+=ativo.acao
-    this.carteira.saldo-=ativo.acao*ativo.cotacao
+    this.carteira.saldo-=ativo.acao*ativo.infoAtivos.cotacao
 
     this.updateCarteira()
   }
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
     this.carteira = carteira
 
     // Calculate all invested money
-    this.investido = this.carteira.ativos.map(p => p.quantidade * p.cotacao).reduce((a, b) => a + b, 0)
+    this.investido = this.carteira.ativos.map(p => p.quantidade * p.infoAtivos.cotacao).reduce((a, b) => a + b, 0)
 
     // Update table rows
     this.dataSource.data = this.carteira.ativos
