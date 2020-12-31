@@ -5,7 +5,7 @@
 }
 
 .welcome {
-    font-size: 4vw;
+    font-size: 4vmax;
     width: 40%;
     margin-right: auto;
 }
@@ -103,21 +103,47 @@ mat-table {
         }
 
         .ticker {
-            font-size: 3.5vw;
+            font-size: 3rem;
             font-weight: bold; 
             color: #3f51b5;
         }
 
-        .peso {
-            font-size: 3.5rem;
+        .ticker-novo {
+            font-size: 2rem;
             font-weight: bold; 
             color: #3f51b5;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        .peso {
+            font-size: 2rem;
+            font-weight: bold; 
+            color: #000;
+        }
+
+        .quantidade {
+            font-size: 1.2rem;
+            font-weight: bold; 
+            color: #000;
         }
 
         .cotacao {
             font-size: 2rem;
             font-weight: bold; 
             color: #000;
+        }
+
+        .comprar {
+            color: green;
+            font-size: 1.5rem;
+        }
+
+        .aguardar {
+            color: #3f51b5;
+            font-size: 1.5rem;
         }
 
         .buttons {
@@ -130,6 +156,7 @@ mat-table {
             outline: 0;
             background: transparent;
             border-bottom: 1px solid black;
+            text-align: center;
         }
     }
 }

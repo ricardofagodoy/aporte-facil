@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { HomeService } from './home.service';
 import { Carteira } from '../../models/carteira';
 import { Ativo } from '../../models/ativo';
@@ -29,18 +28,11 @@ export class HomeComponent implements OnInit {
   saldo_editable : boolean = false
   ativo_editable_row : number = undefined
 
-  // Table
-  dataSource : MatTableDataSource<Ativo>
-  displayedColumns: string[] = [ "editar", "ticker", "quantidade", "peso", "cotacao", "valor", "desbalanco", "acao", "concluir" ]
-
   constructor(private service : HomeService,
               private loginService : LoginService) {}
 
   ngOnInit() {
     
-    // Inits table
-    this.dataSource = new MatTableDataSource()
-
     // Load carteira
     this.loadCarteira()
 
@@ -122,7 +114,7 @@ export class HomeComponent implements OnInit {
   executarCompra(index) {
     const ativo = this.carteira.ativos[index]
     ativo.quantidade+=ativo.acao
-    this.carteira.saldo-=ativo.acao*ativo.infoAtivos.cotacao
+    this.carteira.saldo-=ativo.acao*ativo.infoAtivo.cotacao
 
     this.updateCarteira()
   }
@@ -140,9 +132,6 @@ export class HomeComponent implements OnInit {
     this.carteira = carteira
 
     // Calculate all invested money
-    this.investido = this.carteira.ativos.map(p => p.quantidade * p.infoAtivos.cotacao).reduce((a, b) => a + b, 0)
-
-    // Update table rows
-    this.dataSource.data = this.carteira.ativos
+    this.investido = this.carteira.ativos.map(p => p.quantidade * p.infoAtivo.cotacao).reduce((a, b) => a + b, 0)
   }
 }
