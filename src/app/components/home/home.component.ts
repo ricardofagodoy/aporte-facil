@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { Carteira } from '../../models/carteira';
 import { Ativo } from '../../models/ativo';
+import { InfoAtivo } from '../../models/infoAtivo';
 import { LoginService } from '../login/login.service';
 import { FormControl } from '@angular/forms';
 
@@ -16,12 +17,15 @@ export class HomeComponent implements OnInit {
   carteira : Carteira
   name : string
 
+  infoAtivo : InfoAtivo
+
+  novo_ativo : Ativo
+
   // Ativos
   ativos : string[]
   ativosAutoComplete : string[]
   myControl = new FormControl();
 
-  novo_ativo : any = {}
   investido : number
 
   // Flag to control edition state
@@ -32,6 +36,9 @@ export class HomeComponent implements OnInit {
               private loginService : LoginService) {}
 
   ngOnInit() {
+
+    // Creates empty novo_ativo
+    this.inicializaNovoAtivo();
     
     // Load carteira
     this.loadCarteira()
@@ -44,6 +51,23 @@ export class HomeComponent implements OnInit {
       this.ativos = ativos
       this.ativoChanged()
     })
+  }
+
+  inicializaNovoAtivo() {
+    this.infoAtivo = {
+      cotacao: 0,
+      dy: 0,
+      pvp: 0
+    }
+  
+    this.novo_ativo = {
+      ticker : "",
+      quantidade : 0,
+      peso : 0,
+      infoAtivo: this.infoAtivo,
+      acao: 0,
+      quarentena: false
+    }
   }
 
   ativoChanged() {
@@ -70,6 +94,18 @@ export class HomeComponent implements OnInit {
   editarAtivo(index) {
     // Sets index row to edit mode
     this.ativo_editable_row = index
+  }
+
+  toggleQuarentena(element : Ativo) {
+    // Toggles quarentena
+    element.quarentena = !element.quarentena
+
+    this.updateCarteira()
+  }
+
+  toggleQuarentenaNovoAtivo() {
+    // Toggles quarentena novo_ativo
+    this.novo_ativo.quarentena = !this.novo_ativo.quarentena
   }
 
   // After saving edited row
@@ -103,10 +139,12 @@ export class HomeComponent implements OnInit {
         this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0)
       return
 
+    this.novo_ativo.quarentena = this.novo_ativo.quarentena ? this.novo_ativo.quarentena : false;
+
     this.carteira.ativos.push(this.novo_ativo)
 
     // Clear table footer input values
-    this.novo_ativo = {}
+    this.inicializaNovoAtivo();
 
     this.updateCarteira() 
   }

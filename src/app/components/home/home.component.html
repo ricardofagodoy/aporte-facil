@@ -112,7 +112,7 @@
                     Excluir
                 </button>
                 
-                <mat-slide-toggle>Ignorar</mat-slide-toggle>
+                <mat-slide-toggle checked={{ativo.quarentena}} (click)="toggleQuarentena(ativo)">Ignorar</mat-slide-toggle>
 
                 <button mat-raised-button color="primary" style="margin-left: auto;"
                     *ngIf="ativo.acao > 0" 
@@ -160,7 +160,7 @@
                     Adicionar
                 </button>
 
-                <mat-slide-toggle>Ignorar</mat-slide-toggle>
+                <mat-slide-toggle [checked]=novo_ativo.quarentena (change)="toggleQuarentenaNovoAtivo()">Ignorar</mat-slide-toggle>
             </div>
         </mat-card>
     </div>

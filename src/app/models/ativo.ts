@@ -1,12 +1,12 @@
-import { InfoAtivo } from "./infoAtivos";
+import { InfoAtivo } from "./infoAtivo";
 
 export type Ativo = {
     ticker : string,
     quantidade : number,
     peso : number,
     infoAtivo: InfoAtivo,
-    cotacao: number,
     //valor: number,
-    acao: number
+    acao: number,
+    quarentena: boolean
     //acao_valor: number
 }
