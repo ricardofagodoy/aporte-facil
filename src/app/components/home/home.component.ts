@@ -5,11 +5,24 @@ import { Ativo } from '../../models/ativo';
 import { InfoAtivo } from '../../models/infoAtivo';
 import { LoginService } from '../login/login.service';
 import { FormControl } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+
+const listAnimation = trigger('listAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ opacity: 1 })))],
+      { optional: true }
+    )
+  ])
+]);
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [listAnimation]
 })
 export class HomeComponent implements OnInit {
 
@@ -33,7 +46,8 @@ export class HomeComponent implements OnInit {
   ativo_editable_row : number = undefined
 
   constructor(private service : HomeService,
-              private loginService : LoginService) {}
+              private loginService : LoginService,
+              private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
 
@@ -88,7 +102,11 @@ export class HomeComponent implements OnInit {
     // Validate absurd values
     this.carteira.saldo = Math.max(Math.min(novo_saldo, 1e7), 0)
 
-    this.updateCarteira() 
+    this.updateCarteira()
+
+    this._snackBar.open('Saldo disponível para aportes alterado', 'OK', {
+      duration: 4000,
+    })
   }
 
   editarAtivo(index) {
@@ -101,6 +119,10 @@ export class HomeComponent implements OnInit {
     element.quarentena = !element.quarentena
 
     this.updateCarteira()
+
+    this._snackBar.open(`Ativo ${element.ticker} ${element.quarentena ? 'colocado em' : 'removido da'} quarentena`, 'OK', {
+      duration: 4000,
+    })
   }
 
   toggleQuarentenaNovoAtivo() {
@@ -118,10 +140,17 @@ export class HomeComponent implements OnInit {
     element.peso = Math.max(element.peso, 0)
 
     this.updateCarteira() 
+
+    this._snackBar.open(`Ativo ${element.ticker} (Qtde ${element.quantidade} / Peso ${element.peso}) salvo`, 'OK', {
+      duration: 4000,
+    })
   }
 
   // After deleting row
   deletarAtivo(index) {
+
+    // Find
+    const ativo = this.carteira.ativos[index]
 
     // Filter out removed row
     this.carteira.ativos = this.carteira.ativos.filter((_, i) => i != index)
@@ -129,7 +158,11 @@ export class HomeComponent implements OnInit {
     // No rows in edit mode
     delete this.ativo_editable_row;
 
-    this.updateCarteira() 
+    this.updateCarteira()
+
+    this._snackBar.open(`Ativo ${ativo.ticker} removido da carteira`, 'OK', {
+      duration: 4000,
+    })
   }
 
   adicionarAtivo() {
@@ -143,22 +176,35 @@ export class HomeComponent implements OnInit {
 
     this.carteira.ativos.push(this.novo_ativo)
 
+    this._snackBar.open(`Ativo ${this.novo_ativo.ticker} (Qtde ${this.novo_ativo.quantidade} / Peso ${this.novo_ativo.peso}) adicionado`, 'OK', {
+      duration: 4000,
+    })
+    
     // Clear table footer input values
     this.inicializaNovoAtivo();
+    this.ativoChanged()
 
     this.updateCarteira() 
   }
 
   executarCompra(index) {
+
     const ativo = this.carteira.ativos[index]
     ativo.quantidade+=ativo.acao
+
     this.carteira.saldo-=ativo.acao*ativo.infoAtivo.cotacao
 
     this.updateCarteira()
+
+    this._snackBar.open(`Compra de ${ativo.acao} unidades de ${ativo.ticker} registrada`, 'OK', {
+      duration: 4000,
+    })
   }
 
   private updateCarteira() {
-    this.service.updateCarteira(this.carteira).then(this.setCarteira.bind(this))
+    this.service.updateCarteira(this.carteira)
+      .then(this.setCarteira.bind(this))
+      .catch(() => window.location.reload()) 
   }
 
   private loadCarteira() {

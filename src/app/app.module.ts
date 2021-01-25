@@ -33,6 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
@@ -66,6 +67,7 @@ import {LayoutModule} from '@angular/cdk/layout';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
     LayoutModule
   ],
   providers: [{

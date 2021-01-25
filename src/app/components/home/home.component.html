@@ -41,7 +41,7 @@
     <div class="cards-container">
 
         <!-- Ativos -->
-        <mat-card class="info-card info-card-width" *ngFor="let ativo of carteira.ativos; let i = index">
+        <mat-card [@listAnimation]="carteira.ativos.length" class="info-card info-card-width" *ngFor="let ativo of carteira.ativos; let i = index">
             
             <!-- Primeira linha -->
             <div class="sub-card-container">
@@ -52,44 +52,46 @@
             <!-- Segunda linha -->
             <div class="sub-card-container">
                 <div class="peso">
-                    <span>Peso: </span>
+                    <span>Peso </span>
                     <span *ngIf="i != ativo_editable_row">{{ativo.peso}}</span>
                     <input *ngIf="i == ativo_editable_row" class="peso" type="number" [(ngModel)]="ativo.peso" min="0" max="99" step="1">
                 </div>
             </div>
 
+            <div class="divisor"></div>
+
             <!-- Terceira linha -->
             <div class="sub-card-container">
                 <div class="quantidade">
-                    <span>Quantidade: </span> 
                     <span *ngIf="i != ativo_editable_row">{{ativo.quantidade}}</span>
                     <input *ngIf="i == ativo_editable_row" class="quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="99999" step="1">
+                    <span> unidades</span> 
                 </div>
 
                 <div class="quantidade">
-                    Total: {{(ativo.quantidade * ativo.infoAtivo.cotacao) | brl}}
+                    {{(ativo.quantidade * ativo.infoAtivo.cotacao) | brl}}
                 </div>
             </div>
 
             <!-- Quarta linha -->
             <div class="sub-card-container">
                 <div class="quantidade">
-                    <span>P/VP: </span> 
+                    <span style="font-weight: bold;">P/VP </span> 
                     <span>{{ativo.infoAtivo.pvp}}</span>
                 </div>
 
                 <div class="quantidade">
-                    <span>DY: </span> 
+                    <span style="font-weight: bold;">DY </span> 
                     <span>{{ativo.infoAtivo.dy}}%</span>
                 </div>
             </div>
 
-            <div class="divisor"></div>
+            <div class="separador"></div>
 
             <!-- Comprar -->
             <div class="sub-card-container comprar" *ngIf="ativo.acao > 0">
-                <div>Comprar: {{ativo.acao}}</div>
-                <div>Total: {{(ativo.acao * ativo.infoAtivo.cotacao) | brl}}</div>
+                <div>Compre <span style="font-weight: bold;">{{ativo.acao}}</span></div>
+                <div style="font-weight: bold;">{{(ativo.acao * ativo.infoAtivo.cotacao) | brl}}</div>
             </div>
 
             <!-- Aguardar -->
@@ -139,16 +141,16 @@
             </div>
 
             <div class="sub-card-container">
-                <div class="cotacao">
-                    <span>Peso: </span>
-                    <input class="cotacao" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="99" step="1">
+                <div class="peso">
+                    <span>Peso </span>
+                    <input class="peso" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="99" step="1">
                 </div>
             </div>
 
             <div class="sub-card-container">
-                <div class="quantidade">
-                    <span>Quantidade: </span>
-                    <input class="quantidade" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
+                <div class="peso">
+                    <input class="peso" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
+                    <span> unidades</span>
                 </div>
             </div>
 

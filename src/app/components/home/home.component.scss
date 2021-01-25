@@ -52,6 +52,10 @@
     border: 1px solid #000;
 }
 
+.separador {
+    margin: 4vh 0;
+}
+
 mat-table {
     
     width: 100%;
@@ -133,7 +137,7 @@ mat-table {
         .cotacao {
             font-size: 2rem;
             font-weight: bold; 
-            color: #000;
+            color: #005a0c;
         }
 
         .comprar {
