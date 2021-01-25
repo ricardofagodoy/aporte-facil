@@ -2,10 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .welcome {
-    font-size: 4vmax;
+    font-size: 5vmax;
     width: 40%;
     margin-right: auto;
 }
@@ -13,13 +14,17 @@
 .total {
     
     position: relative;
-    font-size: 2vw;
-    margin-left: 3vw;
+    font-size: 2.5vmax;
+
+    .saldo-container {
+        position: relative;
+        margin-bottom: 2vh;
+    }
     
     .value {
         font-weight: bold; 
         color: rgba($color: #005a0c, $alpha: 1.0);
-        font-size: 3vw;
+        font-size: 3vmax;
     }
     
     .saldo {
@@ -29,8 +34,8 @@
     mat-icon {
         position: absolute;
         top: 0px;
-        right: 0px;
-        font-size: 2vw;
+        right: 2vw;
+        font-size: 2.5vmax;
         cursor: pointer;
     }
     input[type=number] {
@@ -84,6 +89,7 @@ mat-table {
 
 .cards-container {
 
+    font-size: 10px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -107,13 +113,13 @@ mat-table {
         }
 
         .ticker {
-            font-size: 3rem;
+            font-size: 3.5vmax;
             font-weight: bold; 
             color: #3f51b5;
         }
 
         .ticker-novo {
-            font-size: 2rem;
+            font-size: 2vmax;
             font-weight: bold; 
             color: #3f51b5;
 
@@ -123,7 +129,7 @@ mat-table {
         }
 
         .peso {
-            font-size: 2rem;
+            font-size: 2vmax;
             font-weight: bold; 
             color: #000;
         }
@@ -135,7 +141,7 @@ mat-table {
         }
 
         .cotacao {
-            font-size: 2rem;
+            font-size: 2vmax;
             font-weight: bold; 
             color: #005a0c;
         }
@@ -182,6 +188,11 @@ mat-table {
 }
 
 @media only screen and (max-width: 900px) {
+
+    body {
+        font-size: 10px;
+    }
+
     .info-card-width {
         width: 100%;
         margin: 0 0 4% 0;

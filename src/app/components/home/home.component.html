@@ -10,29 +10,32 @@
         </div>
         
         <div class="total">
-            <p>Saldo</p>
-            
-            <div *ngIf="!saldo_editable">
-                <span mat-icon-button aria-label="editar">
-                    <mat-icon (click)="saldo_editable = true">edit</mat-icon>
-                </span>
-                <p class="value saldo">{{carteira.saldo | brl}}</p>
+
+            <div class="saldo-container">
+                <p>Saldo</p>
+                
+                <div *ngIf="!saldo_editable">
+                    <span mat-icon-button aria-label="editar">
+                        <mat-icon (click)="saldo_editable = true">edit</mat-icon>
+                    </span>
+                    <p class="value saldo">{{carteira.saldo | brl}}</p>
+                </div>
+                
+                <div class="edit-saldo" *ngIf="saldo_editable">
+                    <span mat-icon-button aria-label="editar">
+                        <mat-icon (click)="alterarSaldo(saldo_input.value)">check</mat-icon>
+                    </span>
+                    <input #saldo_input matInput type="number" min="0" max="10000000" step="10" class="value saldo" 
+                        [value]="carteira.saldo.toFixed(2)" 
+                        (keydown.enter)="alterarSaldo(saldo_input.value)"
+                    />
+                </div>
             </div>
-            
-            <div class="edit-saldo" *ngIf="saldo_editable">
-                <span mat-icon-button aria-label="editar">
-                    <mat-icon (click)="alterarSaldo(saldo_input.value)">check</mat-icon>
-                </span>
-                <input #saldo_input matInput type="number" min="0" max="10000000" step="10" class="value saldo" 
-                    [value]="carteira.saldo.toFixed(2)" 
-                    (keydown.enter)="alterarSaldo(saldo_input.value)"
-                />
+
+            <div>
+                <p>Investido</p>
+                <p class="value">{{investido | brl}}</p>
             </div>
-        </div>
-        
-        <div class="total">
-            <p>Investido</p>
-            <p class="value">{{investido | brl}}</p>
         </div>
     </div>
     
@@ -114,7 +117,7 @@
                     Excluir
                 </button>
                 
-                <mat-slide-toggle checked={{ativo.quarentena}} (click)="toggleQuarentena(ativo)">Ignorar</mat-slide-toggle>
+                <mat-slide-toggle style="margin-left: 1vmax;" checked={{ativo.quarentena}} (click)="toggleQuarentena(ativo)">Ignorar</mat-slide-toggle>
 
                 <button mat-raised-button color="primary" style="margin-left: auto;"
                     *ngIf="ativo.acao > 0" 
