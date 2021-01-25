@@ -1,0 +1,172 @@
+<div *ngIf="!carteira">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="carteira">
+    <div class="flex-container">
+        
+        <div class="welcome">
+            <span>Sua carteira,<br/>{{name}}</span>
+        </div>
+        
+        <div class="total">
+
+            <div class="saldo-container">
+                <p>Saldo</p>
+                
+                <div *ngIf="!saldo_editable">
+                    <span mat-icon-button aria-label="editar">
+                        <mat-icon (click)="saldo_editable = true">edit</mat-icon>
+                    </span>
+                    <p class="value saldo">{{carteira.saldo | brl}}</p>
+                </div>
+                
+                <div class="edit-saldo" *ngIf="saldo_editable">
+                    <span mat-icon-button aria-label="editar">
+                        <mat-icon (click)="alterarSaldo(saldo_input.value)">check</mat-icon>
+                    </span>
+                    <input #saldo_input matInput type="number" min="0" max="10000000" step="10" class="value saldo" 
+                        [value]="carteira.saldo.toFixed(2)" 
+                        (keydown.enter)="alterarSaldo(saldo_input.value)"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <p>Investido</p>
+                <p class="value">{{investido | brl}}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divisor"></div>
+    
+    <div class="cards-container">
+
+        <!-- Ativos -->
+        <mat-card [@listAnimation]="carteira.ativos.length" class="info-card info-card-width" *ngFor="let ativo of carteira.ativos; let i = index">
+            
+            <!-- Primeira linha -->
+            <div class="sub-card-container">
+                <div class="ticker">{{ativo.ticker}}</div>
+                <div class="cotacao">{{ativo.infoAtivo.cotacao | brl}}</div>
+            </div>
+
+            <!-- Segunda linha -->
+            <div class="sub-card-container">
+                <div class="peso">
+                    <span>Peso </span>
+                    <span *ngIf="i != ativo_editable_row">{{ativo.peso}}</span>
+                    <input *ngIf="i == ativo_editable_row" class="peso" type="number" [(ngModel)]="ativo.peso" min="0" max="99" step="1">
+                </div>
+            </div>
+
+            <div class="divisor"></div>
+
+            <!-- Terceira linha -->
+            <div class="sub-card-container">
+                <div class="quantidade">
+                    <span *ngIf="i != ativo_editable_row">{{ativo.quantidade}}</span>
+                    <input *ngIf="i == ativo_editable_row" class="quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="99999" step="1">
+                    <span> unidades</span> 
+                </div>
+
+                <div class="quantidade">
+                    {{(ativo.quantidade * ativo.infoAtivo.cotacao) | brl}}
+                </div>
+            </div>
+
+            <!-- Quarta linha -->
+            <div class="sub-card-container">
+                <div class="quantidade">
+                    <span style="font-weight: bold;">P/VP </span> 
+                    <span>{{ativo.infoAtivo.pvp}}</span>
+                </div>
+
+                <div class="quantidade">
+                    <span style="font-weight: bold;">DY </span> 
+                    <span>{{ativo.infoAtivo.dy}}%</span>
+                </div>
+            </div>
+
+            <div class="separador"></div>
+
+            <!-- Comprar -->
+            <div class="sub-card-container comprar" *ngIf="ativo.acao > 0">
+                <div>Compre <span style="font-weight: bold;">{{ativo.acao}}</span></div>
+                <div style="font-weight: bold;">{{(ativo.acao * ativo.infoAtivo.cotacao) | brl}}</div>
+            </div>
+
+            <!-- Aguardar -->
+            <div class="sub-card-container aguardar" *ngIf="ativo.acao <= 0">
+                <div>Aguarde</div>
+                <!--div>Total: {{(ativo.desbalanco) | brl}}</div-->
+            </div>
+
+            <div class="sub-card-container buttons">
+
+                <button mat-raised-button *ngIf="i != ativo_editable_row" color="primary" (click)="editarAtivo(i)">
+                    Editar
+                </button>
+
+                <button mat-raised-button *ngIf="i == ativo_editable_row" color="primary" (click)="salvarAtivo(ativo)">
+                    Salvar
+                </button>
+
+                <button mat-raised-button *ngIf="i == ativo_editable_row" color="warn" (click)="deletarAtivo(i)">
+                    Excluir
+                </button>
+                
+                <mat-slide-toggle style="margin-left: 1vmax;" checked={{ativo.quarentena}} (click)="toggleQuarentena(ativo)">Ignorar</mat-slide-toggle>
+
+                <button mat-raised-button color="primary" style="margin-left: auto;"
+                    *ngIf="ativo.acao > 0 && i != ativo_editable_row" 
+                    (click)="executarCompra(i)">
+                    Registrar Compra
+                </button>
+            </div>
+
+        </mat-card>
+
+        <!-- Novo ativo-->
+        <mat-card class="info-card info-card-width" style="border: -1px solid orange;">
+
+            <div class="sub-card-container">
+                <mat-form-field class="ticker-novo">
+                    <mat-label>Ticker</mat-label>
+                    <input type="text" matInput (keyup)="ativoChanged()" [matAutocomplete]="auto" [(ngModel)]="novo_ativo.ticker">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let ticker of ativosAutoComplete" [value]="ticker">
+                            {{ticker}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+
+            <div class="sub-card-container">
+                <div class="peso">
+                    <span>Peso </span>
+                    <input class="peso" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="99" step="1">
+                </div>
+            </div>
+
+            <div class="sub-card-container">
+                <div class="peso">
+                    <input class="peso" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
+                    <span> unidades</span>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="sub-card-container buttons">
+
+                <button mat-raised-button color="primary" (click)="adicionarAtivo()">
+                    Adicionar
+                </button>
+
+                <mat-slide-toggle [checked]=novo_ativo.quarentena (change)="toggleQuarentenaNovoAtivo()">Ignorar</mat-slide-toggle>
+            </div>
+        </mat-card>
+    </div>
+</div>

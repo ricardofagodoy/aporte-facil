@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.waitForLogin().subscribe(() => {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/carteira'])
     })
   }
   

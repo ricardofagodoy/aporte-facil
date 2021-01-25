@@ -11,10 +11,15 @@
                    (click)="snav.toggle()">
         <mat-nav-list>
 
-            <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/home')">
+            <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/carteira')">
                 <mat-icon mat-list-icon>pie_chart</mat-icon>
                 <a mat-line>Minha carteira</a>
              </mat-list-item>
+
+             <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/home')">
+              <mat-icon mat-list-icon>home</mat-icon>
+              <a mat-line>Home</a>
+            </mat-list-item>
 
              <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/login')">
               <mat-icon mat-list-icon>login</mat-icon>

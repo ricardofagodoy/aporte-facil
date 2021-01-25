@@ -5,7 +5,7 @@ import { ApiRepository } from "../../repository/api/ApiRepository";
 @Injectable({
     providedIn: 'root'
 })
-export class HomeService {
+export class CarteiraService {
     
     constructor(private repository : ApiRepository) {}
 

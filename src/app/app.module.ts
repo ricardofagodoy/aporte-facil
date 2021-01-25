@@ -6,7 +6,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { BrlPipe } from './components/home/brl.pipe'
+import { CarteiraComponent } from './components/carteira/carteira.component';
+import { BrlPipe } from './components/carteira/brl.pipe'
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -40,6 +41,7 @@ import {LayoutModule} from '@angular/cdk/layout';
   declarations: [
     AppComponent,
     HomeComponent,
+    CarteiraComponent,
     MenuComponent,
     BrlPipe,
     LoginComponent,

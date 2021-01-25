@@ -1,0 +1,171 @@
+mat-spinner {
+    margin: 0 auto;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.welcome {
+    font-size: 5vmax;
+    width: 40%;
+    margin-right: auto;
+}
+
+.total {
+    
+    position: relative;
+    font-size: 2.5vmax;
+
+    .saldo-container {
+        position: relative;
+        margin-bottom: 2vh;
+    }
+    
+    .value {
+        font-weight: bold; 
+        color: rgba($color: #005a0c, $alpha: 1.0);
+        font-size: 3vmax;
+    }
+    
+    .saldo {
+        color: #3f51b5;
+    }
+
+    mat-icon {
+        position: absolute;
+        top: 0px;
+        right: 2vw;
+        font-size: 2.5vmax;
+        cursor: pointer;
+    }
+    input[type=number] {
+        border-bottom: 1px solid grey;
+    }
+}
+
+.edit-saldo {
+    mat-icon {
+        color: green;
+    }
+}
+
+.divisor {
+    margin: 4vh 0;
+    border: 1px solid #000;
+}
+
+.separador {
+    margin: 4vh 0;
+}
+
+.cards-container {
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 0 10vh 0;
+
+    .info-card {
+
+        .sub-card-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            column-gap: 1vw;
+            box-sizing: border-box;
+            margin: 0 0 2% 0;
+        }
+
+        .divisor {
+            margin: 5% 0;
+            border: 1px solid #000;
+        }
+
+        .ticker {
+            font-size: 3vmax;
+            font-weight: bold; 
+            color: #3f51b5;
+        }
+
+        .ticker-novo {
+            font-size: 2vmax;
+            font-weight: bold; 
+            color: #3f51b5;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        .peso {
+            font-size: 2vmax;
+            font-weight: bold; 
+            color: #000;
+        }
+
+        .quantidade {
+            font-size: 1.2rem;
+            font-weight: bold; 
+            color: #000;
+        }
+
+        .cotacao {
+            font-size: 2vmax;
+            font-weight: bold; 
+            color: #005a0c;
+        }
+
+        .comprar {
+            color: green;
+            font-size: 2vmax;
+        }
+
+        .aguardar {
+            color: #3f51b5;
+            font-size: 2vmax;
+        }
+
+        .buttons {
+            font-size: 1rem;
+            margin-top: 5%;
+            justify-content: flex-start;
+        }
+
+        input[type=number] {
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+    }
+}
+
+$smaller_screen: 700px;
+
+.info-card-width {
+    width: 28%;
+    margin: 1% 0 0 1%;
+    padding: 2%;
+}
+
+@media only screen and (max-width: 1300px) {
+    .info-card-width {
+        width: 43%;
+        margin: 1% 0 0 1%;
+        padding: 3%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .info-card-width {
+        width: 100%;
+        margin: 0 0 4% 0;
+        padding: 4%;
+    }
+}
