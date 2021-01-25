@@ -99,7 +99,7 @@
 
             <!-- Aguardar -->
             <div class="sub-card-container aguardar" *ngIf="ativo.acao <= 0">
-                <div>Aguardar</div>
+                <div>Aguarde</div>
                 <!--div>Total: {{(ativo.desbalanco) | brl}}</div-->
             </div>
 
@@ -120,7 +120,7 @@
                 <mat-slide-toggle style="margin-left: 1vmax;" checked={{ativo.quarentena}} (click)="toggleQuarentena(ativo)">Ignorar</mat-slide-toggle>
 
                 <button mat-raised-button color="primary" style="margin-left: auto;"
-                    *ngIf="ativo.acao > 0" 
+                    *ngIf="ativo.acao > 0 && i != ativo_editable_row" 
                     (click)="executarCompra(i)">
                     Registrar Compra
                 </button>
