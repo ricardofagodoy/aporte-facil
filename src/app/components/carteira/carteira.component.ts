@@ -141,7 +141,7 @@ export class CarteiraComponent implements OnInit {
 
     this.updateCarteira() 
 
-    this._snackBar.open(`Ativo ${element.ticker} (Qtde ${element.quantidade} / Peso ${element.peso}) salvo`, 'OK', {
+    this._snackBar.open(`Ativo ${element.ticker} salvo`, 'OK', {
       duration: 4000,
     })
   }
@@ -176,7 +176,7 @@ export class CarteiraComponent implements OnInit {
 
     this.carteira.ativos.push(this.novo_ativo)
 
-    this._snackBar.open(`Ativo ${this.novo_ativo.ticker} (Qtde ${this.novo_ativo.quantidade} / Peso ${this.novo_ativo.peso}) adicionado`, 'OK', {
+    this._snackBar.open(`Ativo ${this.novo_ativo.ticker} adicionado`, 'OK', {
       duration: 4000,
     })
     

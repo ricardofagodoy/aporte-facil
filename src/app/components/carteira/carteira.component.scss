@@ -10,7 +10,7 @@ mat-spinner {
 }
 
 .welcome {
-    font-size: 5vmax;
+    font-size: 4vmax;
     width: 40%;
     margin-right: auto;
 }
@@ -18,7 +18,7 @@ mat-spinner {
 .total {
     
     position: relative;
-    font-size: 2.5vmax;
+    font-size: 1.5vmax;
 
     .saldo-container {
         position: relative;
@@ -39,7 +39,7 @@ mat-spinner {
         position: absolute;
         top: 0px;
         right: 2vw;
-        font-size: 2.5vmax;
+        font-size: 2vmax;
         cursor: pointer;
     }
     input[type=number] {
@@ -64,6 +64,7 @@ mat-spinner {
 
 .cards-container {
 
+    font-size: 0.7vw;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -87,13 +88,13 @@ mat-spinner {
         }
 
         .ticker {
-            font-size: 3vmax;
+            font-size: 3em;
             font-weight: bold; 
             color: #3f51b5;
         }
 
         .ticker-novo {
-            font-size: 2vmax;
+            font-size: 2em;
             font-weight: bold; 
             color: #3f51b5;
 
@@ -103,46 +104,52 @@ mat-spinner {
         }
 
         .peso {
-            font-size: 2vmax;
+            font-size: 2em;
             font-weight: bold; 
             color: #000;
         }
 
         .quantidade {
-            font-size: 1.2rem;
+            font-size: 1.5em;
             font-weight: bold; 
             color: #000;
         }
 
         .cotacao {
-            font-size: 2vmax;
+            font-size: 1.5em;
             font-weight: bold; 
             color: #005a0c;
         }
 
         .comprar {
             color: green;
-            font-size: 2vmax;
+            font-size: 1.5em;
         }
 
         .aguardar {
             color: #3f51b5;
-            font-size: 2vmax;
+            font-size: 1.5em;
         }
 
         .buttons {
-            font-size: 1rem;
+            font-size: 1em;
             margin-top: 5%;
             justify-content: flex-start;
         }
 
         input[type=number] {
-            border: 0;
-            outline: 0;
+            font-weight: 100;
+            font-size: 0.9em;
             background: transparent;
-            border-bottom: 1px solid black;
+            border: 1px solid rgb(219, 226, 235);
+            border-radius: 5px;
             text-align: center;
         }
+
+        input[type='number']::-webkit-inner-spin-button, 
+        input[type='number']::-webkit-outer-spin-button { 
+            opacity: 1;
+        }  
     }
 }
 
@@ -160,6 +167,10 @@ $smaller_screen: 700px;
         margin: 1% 0 0 1%;
         padding: 3%;
     }
+
+    .cards-container .info-card {
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -167,5 +178,9 @@ $smaller_screen: 700px;
         width: 100%;
         margin: 0 0 4% 0;
         padding: 4%;
+    }
+
+    .cards-container .info-card {
+        font-size: 12px;
     }
 }
