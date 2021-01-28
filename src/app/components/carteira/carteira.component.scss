@@ -10,25 +10,32 @@ mat-spinner {
 }
 
 .welcome {
-    font-size: 4vmax;
-    width: 40%;
+    font-size: 4vw;
     margin-right: auto;
+    word-wrap: normal;
 }
 
 .total {
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    font-size: 1.5vmax;
+    font-size: 22px;
+
+    .total-label {
+        font-size: 1.5em;
+    }
 
     .saldo-container {
         position: relative;
-        margin-bottom: 2vh;
+        margin-right: 2em;
     }
     
     .value {
         font-weight: bold; 
         color: rgba($color: #005a0c, $alpha: 1.0);
-        font-size: 3vmax;
+        font-size: 2em;
     }
     
     .saldo {
@@ -38,8 +45,9 @@ mat-spinner {
     mat-icon {
         position: absolute;
         top: 0px;
-        right: 2vw;
-        font-size: 2vmax;
+        right: 0px;
+        font-size: 1.5em;
+        text-align: right;
         cursor: pointer;
     }
     input[type=number] {
@@ -169,8 +177,6 @@ mat-spinner {
     }
 }
 
-$smaller_screen: 700px;
-
 .info-card-width {
     width: 28%;
     margin: 1% 0 0 1%;
@@ -198,5 +204,38 @@ $smaller_screen: 700px;
 
     .cards-container .info-card {
         font-size: 12px;
+    }
+
+    .welcome {
+        display: none;
+      }
+
+      .flex-container {
+        justify-content: space-evenly;
+      }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .total {
+      font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    .total {
+      font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+
+    .total {
+      font-size: 10px;
+    }
+
+    .cards-container .info-card {
+        font-size: 8px;
     }
 }
