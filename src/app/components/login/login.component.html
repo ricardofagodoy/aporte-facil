@@ -12,7 +12,16 @@
             Faça login e matenha sua carteira de ações/FIIs sempre equilibrada de forma simples e rápida.
           </p>
         </mat-card-content>
-        <mat-card-actions>
+
+        <!-- Loading spinner -->
+        <mat-card-actions *ngIf="loading">
+          <div>
+            <mat-spinner diameter="50"></mat-spinner>
+          </div>
+        </mat-card-actions>
+
+        <!-- Login with social media -->
+        <mat-card-actions *ngIf="!loading">
             <button mat-raised-button color="warn" (click)="signInWithGoogle()">
                 <mat-icon>account_circle</mat-icon>
                 Login with Google
