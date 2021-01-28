@@ -12,7 +12,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 const listAnimation = trigger('listAnimation', [
   transition('* <=> *', [
     query(':enter',
-      [style({ opacity: 0 }), stagger('100ms', animate('1000ms ease-out', style({ opacity: 1 })))],
+      [style({ opacity: 0 }), stagger('0ms', animate('700ms ease-out', style({ opacity: 1 })))],
       { optional: true }
     )
   ])
@@ -93,6 +93,14 @@ export class CarteiraComponent implements OnInit {
     return this.ativos.filter(ativo => ativo.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  mostrarSnackBar(mensagem){
+    this._snackBar.open(mensagem, 'OK', {
+      duration: 4000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+    })
+  }
+
   // After saldo being changed and saved
   alterarSaldo(novo_saldo : number) {
 
@@ -104,9 +112,7 @@ export class CarteiraComponent implements OnInit {
 
     this.updateCarteira()
 
-    this._snackBar.open('Saldo disponível para aportes alterado', 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar('Saldo disponível para aportes alterado');
   }
 
   editarAtivo(index) {
@@ -120,9 +126,7 @@ export class CarteiraComponent implements OnInit {
 
     this.updateCarteira()
 
-    this._snackBar.open(`Ativo ${element.ticker} ${element.quarentena ? 'colocado em' : 'removido da'} quarentena`, 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar(`Ativo ${element.ticker} ${element.quarentena ? 'colocado em' : 'removido da'} quarentena`);
   }
 
   toggleQuarentenaNovoAtivo() {
@@ -141,9 +145,7 @@ export class CarteiraComponent implements OnInit {
 
     this.updateCarteira() 
 
-    this._snackBar.open(`Ativo ${element.ticker} salvo`, 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar(`Ativo ${element.ticker} salvo`);
   }
 
   // After deleting row
@@ -158,33 +160,29 @@ export class CarteiraComponent implements OnInit {
     // No rows in edit mode
     delete this.ativo_editable_row;
 
-    this.updateCarteira()
+    this.updateCarteira();
 
-    this._snackBar.open(`Ativo ${ativo.ticker} removido da carteira`, 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar(`Ativo ${ativo.ticker} removido da carteira`);
   }
 
   adicionarAtivo() {
 
     if (!this.novo_ativo.ticker || this.ativos.indexOf(this.novo_ativo.ticker) < 0 ||
-        this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0 || 
-        this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0)
+        this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0 || this.novo_ativo.quantidade > 99999 || 
+        this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0 || this.novo_ativo.peso > 999)
       return
 
     this.novo_ativo.quarentena = this.novo_ativo.quarentena ? this.novo_ativo.quarentena : false;
 
     this.carteira.ativos.push(this.novo_ativo)
 
-    this._snackBar.open(`Ativo ${this.novo_ativo.ticker} adicionado`, 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar(`Ativo ${this.novo_ativo.ticker} adicionado`);
     
     // Clear table footer input values
     this.inicializaNovoAtivo();
-    this.ativoChanged()
+    this.ativoChanged();
 
-    this.updateCarteira() 
+    this.updateCarteira() ;
   }
 
   executarCompra(index) {
@@ -194,11 +192,9 @@ export class CarteiraComponent implements OnInit {
 
     this.carteira.saldo-=ativo.acao*ativo.infoAtivo.cotacao
 
-    this.updateCarteira()
+    this.updateCarteira();
 
-    this._snackBar.open(`Compra de ${ativo.acao} unidades de ${ativo.ticker} registrada`, 'OK', {
-      duration: 4000,
-    })
+    this.mostrarSnackBar(`Compra de ${ativo.acao} unidades de ${ativo.ticker} registrada`);
   }
 
   private updateCarteira() {

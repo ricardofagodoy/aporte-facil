@@ -57,7 +57,7 @@
                 <div class="peso">
                     <span>Peso </span>
                     <span *ngIf="i != ativo_editable_row">{{ativo.peso}}</span>
-                    <input *ngIf="i == ativo_editable_row" class="peso" type="number" [(ngModel)]="ativo.peso" min="0" max="99" step="1">
+                    <input *ngIf="i == ativo_editable_row" class="input-peso" type="number" [(ngModel)]="ativo.peso" min="0" max="99" step="1">
                 </div>
             </div>
 
@@ -67,8 +67,8 @@
             <div class="sub-card-container">
                 <div class="quantidade">
                     <span *ngIf="i != ativo_editable_row">{{ativo.quantidade}}</span>
-                    <input *ngIf="i == ativo_editable_row" class="quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="99999" step="1">
-                    <span> unidades</span> 
+                    <input *ngIf="i == ativo_editable_row" class="input-quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="99999" step="1">
+                    <span> unidades</span>
                 </div>
 
                 <div class="quantidade">
@@ -146,13 +146,13 @@
             <div class="sub-card-container">
                 <div class="peso">
                     <span>Peso </span>
-                    <input class="peso" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="99" step="1">
+                    <input class="input-peso" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="999" step="1">
                 </div>
             </div>
 
             <div class="sub-card-container">
                 <div class="peso">
-                    <input class="peso" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
+                    <input class="input-quantidade" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
                     <span> unidades</span>
                 </div>
             </div>
@@ -169,4 +169,5 @@
             </div>
         </mat-card>
     </div>
+    <div class="footer"></div>
 </div>
