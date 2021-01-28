@@ -14,6 +14,7 @@ export class MenuComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
   
   public name : string = "Aporte Fácil"
+  public loggedUser : string
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, 
               private router : Router,
@@ -21,6 +22,11 @@ export class MenuComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    // When logged in, show name in the toolbar
+    loginService.waitForLogin().subscribe(() => {
+      this.loggedUser = loginService.getLoggedUser()
+    })
   }
 
   navigateTo(path) {
