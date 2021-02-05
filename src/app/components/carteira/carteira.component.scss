@@ -47,6 +47,17 @@ mat-spinner {
     }
 }
 
+::ng-deep .mat-tooltip {
+    text-align: center;
+    font-size: 0.9em;
+  }
+
+.tooltip-icon {
+    font-size: 0.8em;
+    vertical-align: top;
+    cursor: default;
+}
+
 .edit-saldo {
     mat-icon {
         color: green;

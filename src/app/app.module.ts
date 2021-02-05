@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
@@ -70,7 +71,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    LayoutModule
+    LayoutModule,
+    MatTooltipModule
   ],
   providers: [{
       provide: 'SocialAuthServiceConfig',

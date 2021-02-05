@@ -77,15 +77,38 @@
             </div>
 
             <!-- Quarta linha -->
-            <div class="sub-card-container">
+            <div class="sub-card-container" *ngIf="ativo.infoAtivo.tipo == 'FII'">
                 <div class="quantidade">
                     <span style="font-weight: bold;">P/VP </span> 
-                    <span>{{ativo.infoAtivo.pvp}}</span>
+                    <span>{{ativo.infoAtivo.pvp.toFixed(2)}}</span>
                 </div>
 
                 <div class="quantidade">
                     <span style="font-weight: bold;">DY </span> 
-                    <span>{{ativo.infoAtivo.dy}}%</span>
+                    <span>{{ativo.infoAtivo.dy.toFixed(2)}}%</span>
+                </div>
+            </div>
+
+            <!-- Quarta linha -->
+            <div class="sub-card-container" *ngIf="ativo.infoAtivo.tipo == 'ACAO'">
+                <div class="quantidade">
+                    <span style="font-weight: bold;">P/L </span> 
+                    <span>{{ativo.infoAtivo.pl}}</span>
+                </div>
+
+                <div class="quantidade">
+                    <span style="font-weight: bold;">DY </span> 
+                    <span>{{ativo.infoAtivo.dy.toFixed(2)}}%</span>
+                </div>
+            </div>
+
+            <!-- Quinta linha -->
+            <div class="sub-card-container">
+                <div class="quantidade">
+                    <span style="font-weight: bold;">Prêmio de Risco<mat-icon class="tooltip-icon" color="primary" matTooltipPosition="above" matTooltip="Diferença entre o DY médio dos últimos 12 meses {{ativo.infoAtivo.dy}}% com a Taxa IPCA de longo prazo {{carteira.taxaIpca}}%.">info</mat-icon></span>
+                </div>
+                <div class="quantidade">
+                    <span [ngStyle]="{'color': ativo.infoAtivo.dy - carteira.taxaIpca > 0 ? 'green' : 'red' }">{{(ativo.infoAtivo.dy - carteira.taxaIpca).toFixed(2)}}%</span>
                 </div>
             </div>
 
