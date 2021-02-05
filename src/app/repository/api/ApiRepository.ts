@@ -32,6 +32,16 @@ export class ApiRepository {
         ).toPromise()
     }
 
+    sendFeedback(feedback : string) : Promise<void> {
+
+        console.log('Sending feedback: ' + feedback)
+        
+        return this.http.post<void>(
+            `${environment.backend_host}/feedback`,
+            {withCredentials: true}
+        ).toPromise()
+    }
+
     login(token : string) : Promise<string> {
         return this.http.post(
             `${environment.backend_host}/login`,

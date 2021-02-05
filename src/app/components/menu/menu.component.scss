@@ -30,9 +30,10 @@ h1.example-app-name {
     flex: 1 0 auto;
 }
 
-.logged-user {
+.logged-user, .feedback {
     font-weight: normal;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .spacer {

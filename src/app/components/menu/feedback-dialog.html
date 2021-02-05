@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Feedback</h2>
+
+<mat-dialog-content class="mat-typography">
+  <h3>Deixe sua opinião de melhoria ou sugestão:</h3>
+  <mat-form-field style="width: 90%; max-width: 600px;">
+    <mat-label>Feedback</mat-label>
+    <textarea #feedback_text matInput rows=5 placeholder="Seu comentário!"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="primary" (click)="send_feedback(feedback_text.value)">Enviar</button>
+    <button mat-raised-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

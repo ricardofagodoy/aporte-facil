@@ -5,12 +5,20 @@
 
       <span class="spacer"></span>
 
-      <div class="logged-user" *ngIf="loggedUser">
+      <div class="feedback" *ngIf="loggedUser" (click)="provide_feedback()">
+        <button mat-icon-button>
+          <mat-icon>feedback</mat-icon>
+        </button>
+        <span>Feedback</span>
+      </div>
+
+      <!--div class="logged-user" *ngIf="loggedUser">
         <button mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </button>
         <span>Olá, {{loggedUser}}</span>
-    </div>
+    </div!-->
+    
     </mat-toolbar>
   
     <mat-sidenav-container class="sidenav-container"

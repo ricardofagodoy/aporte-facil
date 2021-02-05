@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CarteiraComponent } from './components/carteira/carteira.component';
 import { BrlPipe } from './components/carteira/brl.pipe'
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuComponent, FeedbackDialog } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SobreComponent } from './components/sobre/sobre.component';
@@ -36,6 +36,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog'
 import {LayoutModule} from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -48,7 +49,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrlPipe,
     LoginComponent,
     LogoutComponent,
-    SobreComponent
+    SobreComponent,
+    FeedbackDialog
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatSnackBarModule,
     LayoutModule,
     MatTooltipModule,
+    MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{
