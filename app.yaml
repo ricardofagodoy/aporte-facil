@@ -2,10 +2,11 @@ runtime: python37
 
 handlers:
 
-  - url: /(.*\.(gif|png|jpeg|jpg|css|js|ico|ttf))$
+  - url: /(.*\.(gif|png|jpeg|jpg|css|js|ico|ttf|webmanifest))$
     static_files: dist/\1
     upload: dist/(.*)
     
   - url: /(.*)
     static_files: dist/index.html
     upload: dist/index.html
+    secure: always

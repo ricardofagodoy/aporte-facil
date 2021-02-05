@@ -9,12 +9,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  loading : boolean = true
+
   constructor(private loginService : LoginService, private router : Router) {}
 
   ngOnInit(): void {
-    this.loginService.waitForLogin().subscribe(() => {
-      this.router.navigate(['/carteira'])
-    })
+    
+     this.loginService.waitForLogin().subscribe(() => {
+       this.router.navigate(['/carteira'])
+     })
+
+    // Show button after tried to login
+    setTimeout(() => {
+      this.loading = false
+    }, 2000)
   }
   
   signInWithGoogle(): void {

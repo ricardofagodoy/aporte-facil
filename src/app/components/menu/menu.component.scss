@@ -30,6 +30,15 @@ h1.example-app-name {
     flex: 1 0 auto;
 }
 
+.logged-user {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
 mat-sidenav-content {
-    padding: 5vh 7vw;
+    padding: 4vh 7vw;
 }

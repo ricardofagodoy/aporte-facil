@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ng build --prod
-gcloud app deploy
+gcloud app deploy -q
 rm -rf dist

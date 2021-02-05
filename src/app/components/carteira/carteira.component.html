@@ -6,13 +6,13 @@
     <div class="flex-container">
         
         <div class="welcome">
-            <span>Sua carteira,<br/>{{name}}</span>
+            <span>Carteira principal</span>
         </div>
         
         <div class="total">
 
             <div class="saldo-container">
-                <p>Saldo</p>
+                <p class="total-label">Saldo</p>
                 
                 <div *ngIf="!saldo_editable">
                     <span mat-icon-button aria-label="editar">
@@ -33,7 +33,7 @@
             </div>
 
             <div>
-                <p>Investido</p>
+                <p class="total-label">Investido</p>
                 <p class="value">{{investido | brl}}</p>
             </div>
         </div>

@@ -37,6 +37,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {LayoutModule} from '@angular/cdk/layout';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatSlideToggleModule,
     MatSnackBarModule,
     LayoutModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{
       provide: 'SocialAuthServiceConfig',
