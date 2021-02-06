@@ -38,6 +38,7 @@ export class ApiRepository {
         
         return this.http.post<void>(
             `${environment.backend_host}/feedback`,
+            feedback,
             {withCredentials: true}
         ).toPromise()
     }
