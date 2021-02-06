@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   }
   
   signInWithGoogle(): void {
-    this.loginService.signInWithGoogle()
+    this.loading = true
+    this.loginService.signInWithGoogle().catch(() => this.loading = false)
   }
 
   signOut(): void {

@@ -21,10 +21,7 @@ export class LoginService {
             this.authService.authState.subscribe((user : SocialUser) => {
                 
                 // Success
-                if (user != null) {
-                    
-                    console.log('Got social user')
-                    
+                if (user != null) {                    
                     // Logs in the backend
                     this.login(user.idToken)
                 }
@@ -36,8 +33,6 @@ export class LoginService {
             try {
                 // Login returns user's name on success
                 this.user = await this.repository.login(token)
-
-                console.log('Got cookie from backend')
 
                 this.logged.next(true)
                 this.autoLogin = true
@@ -63,8 +58,8 @@ export class LoginService {
             return this.autoLogin
         }
         
-        signInWithGoogle(): void {
-            this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        signInWithGoogle() {
+            return this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
         }
         
         signOut(): void {
