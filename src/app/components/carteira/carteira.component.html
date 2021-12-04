@@ -115,12 +115,7 @@
             <!-- Quinta linha -->
             <div class="sub-card-container" *ngIf="ativo.infoAtivo.tipo == 'ACAO'">
                 <div class="quantidade">
-                    <span style="opacity: 0.0; color: transparent; font-weight: bold;">Valorização (30 dias)</span>
-                </div>
-                <div class="quantidade">
-                <!--
-                    <span [ngStyle]="{'color': ativo.infoAtivo.valorizacao >= 0 ? 'green' : 'red' }">%</span>
-                -->
+                    <span style="font-weight: bold;"><a href="https://www.google.com/finance/quote/{{ativo.ticker}}:BVMF" target="_blank">Histórico de Valorização<img class="link-icon" src="../../../assets/icons/external-link.png" alt="external link"></a></span>
                 </div>
             </div>
 

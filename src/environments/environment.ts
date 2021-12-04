@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   backend_host: 'http://localhost:4200/api',
-  google_client_id: '497724230691-gh2gv9m0f1jn547l90hg0sb7fiu9e5cn.apps.googleusercontent.com'
+  google_client_id: '877964033701-k54dc9unqttc9bov960haapp17n2vdoi.apps.googleusercontent.com'
 };
 
 /*

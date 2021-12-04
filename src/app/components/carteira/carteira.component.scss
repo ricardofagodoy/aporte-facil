@@ -192,6 +192,40 @@ mat-spinner {
     padding: 2%;
 }
 
+.link-icon {
+    height: 40px;
+    width: 40px;
+    font-size: 1.5em;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+a:link {
+    text-decoration: none;
+    color: #0000FF;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #0000FF;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #0000FF;
+}
+
+a:active {
+    text-decoration: none;
+    color: #0000FF;
+}
+
+.link-icon {
+    margin: 0.1em;
+    width: 0.6em;
+    height: 0.6em;
+}
+
 @media only screen and (max-width: 1300px) {
     .info-card-width {
         width: 43%;
