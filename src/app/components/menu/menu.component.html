@@ -1,63 +1,91 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      <h1 class="example-app-name">{{name}}</h1>
 
-      <span class="spacer"></span>
+  <mat-toolbar color="primary" class="example-toolbar">
 
-      <div class="feedback" (click)="provide_feedback()">
-        <button mat-icon-button>
-          <mat-icon>feedback</mat-icon>
-        </button>
-        <span>Feedback</span>
-      </div>
+    <span [hidden]="!mobileQuery.matches">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </span>
 
-      <!--div class="logged-user" *ngIf="loggedUser">
+    <h1 class="example-app-name" (click)="navigateTo('/home')">{{name}}</h1>
+
+    <span class="spacer"></span>
+
+    <div class="toolbar-items" [hidden]="mobileQuery.matches">
+
+      <span *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/carteira')">
+        <a mat-line>Minha carteira</a>
+      </span>
+
+      <span *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/home')">
+        <a mat-line>Home</a>
+      </span>
+
+      <span *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/login')">
+        <a mat-line>Login</a>
+      </span>
+
+      <span (click)="navigateTo('/sobre')">
+        <a mat-line>Quem somos</a>
+      </span>
+
+      <span *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/logout')">
+        <a mat-line>Logout</a>
+      </span>
+    </div>
+
+    <div class="feedback" (click)="provide_feedback()">
+      <button mat-icon-button>
+        <mat-icon>feedback</mat-icon>
+      </button>
+      <span>Feedback</span>
+    </div>
+
+    <!--div class="logged-user" *ngIf="loggedUser">
         <button mat-icon-button>
           <mat-icon>account_circle</mat-icon>
         </button>
         <span>Olá, {{loggedUser}}</span>
     </div!-->
-    
-    </mat-toolbar>
-  
-    <mat-sidenav-container class="sidenav-container"
-                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'"
-                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
-                   (click)="snav.toggle()">
-        <mat-nav-list>
 
-            <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/carteira')">
-                <mat-icon mat-list-icon>pie_chart</mat-icon>
-                <a mat-line>Minha carteira</a>
-             </mat-list-item>
+  </mat-toolbar>
 
-             <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/home')">
-              <mat-icon mat-list-icon>home</mat-icon>
-              <a mat-line>Home</a>
-            </mat-list-item>
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56" (click)="snav.toggle()">
+      <mat-nav-list>
 
-             <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/login')">
-              <mat-icon mat-list-icon>login</mat-icon>
-              <a mat-line>Login</a>
-            </mat-list-item>
+        <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/carteira')">
+          <mat-icon mat-list-icon>pie_chart</mat-icon>
+          <a mat-line>Minha carteira</a>
+        </mat-list-item>
 
-            <mat-list-item (click)="navigateTo('/sobre')">
-              <mat-icon mat-list-icon>emoji_people</mat-icon>
-              <a mat-line>Quem somos?</a>
-            </mat-list-item>
+        <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/home')">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <a mat-line>Home</a>
+        </mat-list-item>
 
-            <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/logout')">
-              <mat-icon mat-list-icon>exit_to_app</mat-icon>
-              <a mat-line>Logout</a>
-            </mat-list-item>
+        <mat-list-item *ngIf="!(loginService.waitForLogin() | async)" (click)="navigateTo('/login')">
+          <mat-icon mat-list-icon>login</mat-icon>
+          <a mat-line>Login</a>
+        </mat-list-item>
 
-        </mat-nav-list>
-      </mat-sidenav>
-  
-      <mat-sidenav-content>
-        <ng-content></ng-content>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+        <mat-list-item (click)="navigateTo('/sobre')">
+          <mat-icon mat-list-icon>emoji_people</mat-icon>
+          <a mat-line>Quem somos</a>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/logout')">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <a mat-line>Logout</a>
+        </mat-list-item>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

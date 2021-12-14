@@ -30,7 +30,8 @@
               "src/.well-known"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/css/styles.scss",
+              "src/css/vendor.css"
             ],
             "scripts": []
           },
@@ -97,7 +98,8 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/css/styles.scss",
+              "src/css/vendor.css"
             ],
             "scripts": []
           }

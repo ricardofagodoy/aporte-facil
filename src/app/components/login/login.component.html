@@ -1,35 +1,41 @@
-<div class="login-container">
+<section class="page-section bg-light" id="team">
 
-    <mat-card class="login-card">
+  <div class="container">
 
-        <div class="title">Aporte Fácil</div>
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Faça seu login</h2>
+      <h3 class="section-subheading text-muted">Começe agora mesmo à manter sua carteira de ações/FIIs sempre
+        equilibrada de forma simples e rápida.</h3>
+    </div>
 
-        <img mat-card-image src="../../../assets/logo.png" alt="logo">
-        <mat-card-content>
-          <p>
-            Forma fácil de visualizar a distribuição correta de seu aporte entre os ativos de sua carteira.
-            <br/><br/>
-            Faça login e matenha sua carteira de ações/FIIs sempre equilibrada de forma simples e rápida.
-          </p>
-        </mat-card-content>
+    <!-- Loading spinner -->
+    <mat-card-actions *ngIf="loading">
+      <div>
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+    </mat-card-actions>
 
-        <!-- Loading spinner -->
-        <mat-card-actions *ngIf="loading">
-          <div>
-            <mat-spinner diameter="50"></mat-spinner>
-          </div>
-        </mat-card-actions>
+    <div class="row justify-content-center" *ngIf="!loading">
 
-        <!-- Login with social media -->
-        <mat-card-actions *ngIf="!loading">
-            <button mat-raised-button color="warn" (click)="signInWithGoogle()">
-                <mat-icon>account_circle</mat-icon>
-                Login with Google
-            </button>
-            <button mat-raised-button color="primary" (click)="signInWithFacebook()">
-                <mat-icon>facebook</mat-icon>
-                Login with Facebook
-            </button>
-        </mat-card-actions>
-      </mat-card>
-</div>
+      <div class="col-lg-3">
+        <div class="team-member">
+          <img class="mx-auto rounded-circle login-img" src="assets/img/google.png" alt="..."
+            (click)="signInWithGoogle()" />
+          <h4>Login with</h4>
+          <p class="text-muted">Google</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="team-member">
+          <img class="mx-auto rounded-circle login-img" src="assets/img/fb.svg" alt="..."
+            (click)="signInWithFacebook()" />
+          <h4>Login with</h4>
+          <p class="text-muted">Facebook</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

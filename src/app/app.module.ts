@@ -35,6 +35,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSliderModule} from '@angular/material/slider'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog'
 import {LayoutModule} from '@angular/cdk/layout';
@@ -73,6 +74,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
+    MatSliderModule,
     MatSnackBarModule,
     LayoutModule,
     MatTooltipModule,

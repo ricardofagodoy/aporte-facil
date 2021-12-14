@@ -8,10 +8,25 @@
     right: 0;
 }
 
+.toolbar-items {
+    width: 100%;
+    text-align: right;
+
+    span {
+        font-size: 1.2rem;
+        margin-right: 2em;
+        cursor: pointer;
+    }
+}
+
 .example-is-mobile .example-toolbar {
     position: fixed;
     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
     z-index: 2;
+}
+
+.example-toolbar {
+    //  background-color: transparent;
 }
 
 h1.example-app-name {
@@ -41,5 +56,5 @@ h1.example-app-name {
 }
 
 mat-sidenav-content {
-    padding: 4vh 7vw;
+    padding: 4vh 4vw;
 }

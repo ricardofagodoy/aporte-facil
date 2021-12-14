@@ -24,7 +24,7 @@ export class MenuComponent implements OnDestroy {
               public dialog: MatDialog,
               private router : Router,
               public loginService : LoginService) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 750px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
