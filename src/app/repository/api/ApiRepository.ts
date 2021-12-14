@@ -43,10 +43,10 @@ export class ApiRepository {
         ).toPromise()
     }
 
-    login(token : string) : Promise<string> {
+    login(token : string, provider : string) : Promise<string> {
         return this.http.post(
             `${environment.backend_host}/login`,
-            {token},
+            {token, provider},
             {withCredentials: true, responseType: 'text'}
         ).toPromise()
     }

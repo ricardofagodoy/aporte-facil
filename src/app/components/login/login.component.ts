@@ -30,6 +30,11 @@ export class LoginComponent implements OnInit {
     this.loginService.signInWithGoogle().catch(() => this.loading = false)
   }
 
+  signInWithFacebook(): void {
+    this.loading = true
+    this.loginService.signInWithFacebook().catch(() => this.loading = false)
+  }
+
   signOut(): void {
     this.loginService.signOut()
   }

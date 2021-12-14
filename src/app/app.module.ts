@@ -86,6 +86,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         providers: [{
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.google_client_id)
+          }, {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.facebook_client_id)
           }]
       } as SocialAuthServiceConfig
     }],

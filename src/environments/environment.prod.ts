@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   backend_host: 'https://backend.aportefacil.com.br',
-  google_client_id: '497724230691-gh2gv9m0f1jn547l90hg0sb7fiu9e5cn.apps.googleusercontent.com'
+  google_client_id: '877964033701-s2homesmlc9pgia5f5n7dfem6pgjilqn.apps.googleusercontent.com',
+  facebook_client_id: '620008135914101'
 };

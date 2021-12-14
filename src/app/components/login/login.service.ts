@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ApiRepository } from "../../repository/api/ApiRepository";
-import { SocialAuthService, GoogleLoginProvider, SocialUser } from "angularx-social-login";
+import { SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from "angularx-social-login";
 import { Subject } from "rxjs";
 
 @Injectable({
@@ -23,16 +23,16 @@ export class LoginService {
                 // Success
                 if (user != null) {                    
                     // Logs in the backend
-                    this.login(user.idToken)
+                    this.login(user.idToken || user.authToken, user.provider)
                 }
             });
         }
         
-        async login(token) : Promise<boolean> {
+        async login(token, provider) : Promise<boolean> {
             
             try {
                 // Login returns user's name on success
-                this.user = await this.repository.login(token)
+                this.user = await this.repository.login(token, provider)
 
                 this.logged.next(true)
                 this.autoLogin = true
@@ -60,6 +60,10 @@ export class LoginService {
         
         signInWithGoogle() {
             return this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        }
+
+        signInWithFacebook() {
+            return this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
         }
         
         signOut(): void {

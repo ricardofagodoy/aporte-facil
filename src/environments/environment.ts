@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  backend_host: 'http://localhost:4200/api',
-  google_client_id: '877964033701-k54dc9unqttc9bov960haapp17n2vdoi.apps.googleusercontent.com'
+  backend_host: 'https://localhost:4200/api',
+  google_client_id: '877964033701-s2homesmlc9pgia5f5n7dfem6pgjilqn.apps.googleusercontent.com',
+  facebook_client_id: '620008135914101'
 };
 
 /*

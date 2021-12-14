@@ -9,6 +9,11 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+@font-face {
+  font-family: "Custom";
+  src: url("./assets/fonts/Comfortaa-Regular.ttf") format("truetype")
+}
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -30,7 +35,7 @@ $aporte-facil-theme: mat-light-theme((
 
 // Custom typografy
 $custom-typography: mat-typography-config(
-  $font-family: 'Roboto, monospace',
+  $font-family: 'Custom',
   $headline: mat-typography-level(32px, normal, 700),
   $body-1: mat-typography-level(16px, normal, 500)
 );
@@ -43,11 +48,6 @@ $custom-typography: mat-typography-config(
 @include angular-material-theme($aporte-facil-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
-@font-face {
-  font-family: "Comfortaa";
-  src: url("./assets/fonts/Comfortaa-Regular.ttf") format("truetype")
-}
 
 html, body { height: 100%; }
 body { margin: 0; }
