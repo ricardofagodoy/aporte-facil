@@ -16,7 +16,7 @@ export class MenuComponent implements OnDestroy {
   public mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   
-  public name : string = "Aporte Fácil"
+  public name : string = "Balanceia"
   public loggedUser : string
 
   constructor(changeDetectorRef: ChangeDetectorRef, 
