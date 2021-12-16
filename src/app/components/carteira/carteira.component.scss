@@ -115,7 +115,7 @@ mat-spinner {
         }
 
         .ticker-novo {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: bold; 
             color: #3f51b5;
 
@@ -124,10 +124,35 @@ mat-spinner {
             }
         }
 
-        .peso {
-            font-size: 2em;
+        .ticker-novo-quantidade {
+            width: 7em;
+            font-size: 1.5em;
             font-weight: bold; 
-            color: #000;
+            color: #3f51b5;
+
+            .mat-form-field-wrapper {
+                padding: 0;
+            }
+        }
+
+        .ticker-novo-peso {
+            width: 3em;
+            font-size: 1.5em;
+            font-weight: bold; 
+            color: #3f51b5;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        .novo-ativo-input-card {
+            padding: 0;
+            margin: 0;
+        }
+
+        .botao-novo-ativo {
+            margin-left: 1em;
         }
 
         .quantidade {
@@ -158,18 +183,6 @@ mat-spinner {
             justify-content: flex-start;
         }
 
-        .input-peso {
-            font-size: 1.8em;
-            width: 35%;
-            color: #000;
-        }
-
-        .input-quantidade {
-            font-size: 1.3em;
-            width: 40%;
-            color: #000;
-        }
-
         input[type=number] {
             font-weight: 100;
             font-size: 0.9em;
@@ -179,10 +192,19 @@ mat-spinner {
             text-align: center;
         }
 
-        input[type='number']::-webkit-inner-spin-button, 
-        input[type='number']::-webkit-outer-spin-button { 
-            opacity: 1;
-        }  
+        input[type=number].novo-input {
+            font: inherit;
+            background: transparent;
+            color: currentColor;
+            border: none;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+            vertical-align: bottom;
+            text-align: inherit;
+        }
     }
 }
 

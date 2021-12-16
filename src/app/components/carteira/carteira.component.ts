@@ -76,8 +76,8 @@ export class CarteiraComponent implements OnInit {
   
     this.novo_ativo = {
       ticker : "",
-      quantidade : 0,
-      peso : 0,
+      quantidade : null,
+      peso : null,
       infoAtivo: this.infoAtivo,
       acao: 0,
       quarentena: false
@@ -167,10 +167,33 @@ export class CarteiraComponent implements OnInit {
 
   adicionarAtivo() {
 
-    if (!this.novo_ativo.ticker || this.ativos.indexOf(this.novo_ativo.ticker) < 0 ||
-        this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0 || this.novo_ativo.quantidade > 99999 || 
-        this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0 || this.novo_ativo.peso > 999)
-      return
+    var failed = false;
+
+    if (this.novo_ativo.peso == undefined || this.novo_ativo.peso < 0) {
+      this.novo_ativo.peso = 0;
+      failed = true;
+    }
+
+    if (this.novo_ativo.peso > 999) {
+      this.novo_ativo.peso = 999;
+      failed = true;
+    }
+
+    if (this.novo_ativo.quantidade == undefined || this.novo_ativo.quantidade < 0) {
+      this.novo_ativo.quantidade = 0;
+      failed = true;
+    }
+
+    if (this.novo_ativo.quantidade > 999999) {
+      this.novo_ativo.quantidade = 999999;
+      failed = true;
+    }
+
+    if (!this.novo_ativo.ticker || this.ativos.indexOf(this.novo_ativo.ticker) < 0)
+      failed = true;
+
+    if (failed)
+      return;
 
     this.novo_ativo.quarentena = this.novo_ativo.quarentena ? this.novo_ativo.quarentena : false;
 

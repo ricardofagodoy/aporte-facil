@@ -67,7 +67,7 @@
             <div class="sub-card-container">
                 <div class="quantidade">
                     <span *ngIf="i != ativo_editable_row">{{ativo.quantidade}}</span>
-                    <input *ngIf="i == ativo_editable_row" class="input-quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="99999" step="1">
+                    <input *ngIf="i == ativo_editable_row" class="input-quantidade" type="number" [(ngModel)]="ativo.quantidade" min="0" max="999999" step="1">
                     <span> unidades</span>
                 </div>
 
@@ -161,7 +161,7 @@
         <!-- Novo ativo-->
         <mat-card class="info-card info-card-width" style="border: -1px solid orange;">
 
-            <div class="sub-card-container">
+            <div class="sub-card-container novo-ativo-input-card">
                 <mat-form-field class="ticker-novo">
                     <mat-label>Ticker</mat-label>
                     <input type="text" matInput (keyup)="ativoChanged()" [matAutocomplete]="auto" [(ngModel)]="novo_ativo.ticker">
@@ -173,28 +173,24 @@
                 </mat-form-field>
             </div>
 
-            <div class="sub-card-container">
-                <div class="peso">
-                    <span>Peso </span>
-                    <input class="input-peso" type="number" [(ngModel)]="novo_ativo.peso" min="0" max="999" step="1">
-                </div>
+            <div class="sub-card-container novo-ativo-input-card">
+                <mat-form-field class="ticker-novo-peso">
+                    <mat-label>Peso</mat-label>
+                    <input matInput type="number" [(ngModel)]="novo_ativo.peso" min="0" max="999" step="1" class="novo-input" autocomplete="off"/>
+                </mat-form-field>
             </div>
 
-            <div class="sub-card-container">
-                <div class="peso">
-                    <input class="input-quantidade" type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="99999" step="1">
-                    <span> unidades</span>
-                </div>
+            <div class="sub-card-container novo-ativo-input-card">
+                <mat-form-field class="ticker-novo-quantidade">
+                    <mat-label>Quantidade</mat-label>
+                    <input matInput type="number" [(ngModel)]="novo_ativo.quantidade" min="0" max="999999" step="1" class="novo-input" autocomplete="off"/>
+                </mat-form-field>
             </div>
-
-            <br/>
 
             <div class="sub-card-container buttons">
-
                 <button mat-raised-button color="primary" (click)="adicionarAtivo()">
                     Adicionar
                 </button>
-
                 <mat-slide-toggle [checked]=novo_ativo.quarentena (change)="toggleQuarentenaNovoAtivo()">Ignorar</mat-slide-toggle>
             </div>
         </mat-card>
