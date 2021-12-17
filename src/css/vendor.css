@@ -1352,62 +1352,62 @@ progress {
 
   .col-lg-1 {
     flex: 0 0 auto;
-    width: 8.33333333%;
+    max-width: 8.33333333%;
   }
 
   .col-lg-2 {
     flex: 0 0 auto;
-    width: 16.66666667%;
+    max-width: 16.66666667%;
   }
 
   .col-lg-3 {
     flex: 0 0 auto;
-    width: 25%;
+    max-width: 25%;
   }
 
   .col-lg-4 {
     flex: 0 0 auto;
-    width: 33.33333333%;
+    max-width: 33.33333333%;
   }
 
   .col-lg-5 {
     flex: 0 0 auto;
-    width: 41.66666667%;
+    max-width: 41.66666667%;
   }
 
   .col-lg-6 {
     flex: 0 0 auto;
-    width: 50%;
+    max-width: 50%;
   }
 
   .col-lg-7 {
     flex: 0 0 auto;
-    width: 58.33333333%;
+    max-width: 58.33333333%;
   }
 
   .col-lg-8 {
     flex: 0 0 auto;
-    width: 66.66666667%;
+    max-width: 66.66666667%;
   }
 
   .col-lg-9 {
     flex: 0 0 auto;
-    width: 75%;
+    max-width: 75%;
   }
 
   .col-lg-10 {
     flex: 0 0 auto;
-    width: 83.33333333%;
+    max-width: 83.33333333%;
   }
 
   .col-lg-11 {
     flex: 0 0 auto;
-    width: 91.66666667%;
+    max-width: 91.66666667%;
   }
 
   .col-lg-12 {
     flex: 0 0 auto;
-    width: 100%;
+    max-width: 100%;
   }
 
   .offset-lg-0 {
@@ -11288,7 +11288,7 @@ p {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding: 3rem 0 1rem 0;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
