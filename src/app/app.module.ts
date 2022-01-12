@@ -39,6 +39,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSliderModule} from '@angular/material/slider'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog'
+import {MatTabsModule} from '@angular/material/tabs';
 import {LayoutModule} from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -81,6 +82,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LayoutModule,
     MatTooltipModule,
     MatDialogModule,
+    MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{
