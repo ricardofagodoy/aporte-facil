@@ -42,6 +42,7 @@ import {MatDialogModule} from '@angular/material/dialog'
 import {MatTabsModule} from '@angular/material/tabs';
 import {LayoutModule} from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LogoutComponent,
     SobreComponent,
     PlanosComponent,
-    FeedbackDialog
+    FeedbackDialog,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
