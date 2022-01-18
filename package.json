@@ -24,6 +24,7 @@
     "@angular/router": "~10.0.6",
     "@angular/service-worker": "~10.0.6",
     "angularx-social-login": "^3.5.4",
+    "chart.js": "^3.7.0",
     "http": "^0.0.1-security",
     "js": "^0.1.0",
     "parser": "^0.1.4",

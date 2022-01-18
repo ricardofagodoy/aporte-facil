@@ -83,6 +83,12 @@ mat-spinner {
   height: 2vh;
 }
 
+
+
+::ng-deep .mat-tab-header .mat-tab-label {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
 .cards-container {
 
     font-size: 0.7vw;
