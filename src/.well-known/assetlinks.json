@@ -1,9 +1,6 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.ricardofagodoy.aportefacil",
-    "sha256_cert_fingerprints":
-    ["43:BD:67:49:18:FC:F9:D6:4B:39:36:D7:DE:B8:C0:C0:32:1C:E6:86:E3:D4:B5:88:34:93:22:91:B7:07:7F:D7"]
-  }
-}]
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "br.com.balanceia.twa",
+                     "sha256_cert_fingerprints": ["AE:29:C2:5E:40:27:95:26:53:93:5D:00:C0:53:7C:B8:AA:58:6B:99:11:DC:56:35:29:BA:33:9F:39:88:5F:52"] }
+      }
+]
