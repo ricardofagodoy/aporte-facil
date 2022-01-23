@@ -6,13 +6,13 @@ import { LoginComponent } from './components/login/login.component'
 import { AuthenticationGuard } from './components/login/Authentication.guard'
 import { LogoutComponent } from './components/logout/logout.component';
 import { SobreComponent } from './components/sobre/sobre.component';
-import { PlanosComponent } from './components/planos/planos.component';
+import { AssinaturaComponent } from './components/assinatura/assinatura.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'carteira', component: CarteiraComponent, canActivate: [AuthenticationGuard] },
   { path: 'sobre', component: SobreComponent },
-  { path: 'planos', component: PlanosComponent },
+  { path: 'assinatura', component: AssinaturaComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'login', component: LoginComponent },
   

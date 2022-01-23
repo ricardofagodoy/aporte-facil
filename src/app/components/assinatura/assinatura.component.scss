@@ -18,6 +18,12 @@
     }
 }
 
+.pricing-page-title {
+    color: #000;
+    font-size: 3em;
+    font-weight: bold;
+}
+
 .pricing-item {
     border: 3px solid #3f51b5;
     color: #fff;
@@ -30,8 +36,23 @@
     .pricing-title {
         border-radius: 10px;
         color: #000;
-        font-size: 1.5em;
-        margin: 0 5% 10% 5%;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .pricing-price {
+        border-radius: 10px;
+        color: rgb(60, 100, 170);
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: 4%;
+    }
+
+    .pricing-sub-title {
+        border-radius: 10px;
+        color: rgb(60, 100, 170);
+        font-size: 1em;
+        margin: 0 5% 4% 5%;
         font-weight: bold;
     }
 
@@ -50,11 +71,19 @@
     }
 
     .pricing-footer {
-        margin-top: 10%;
+        margin-top: 5%;
         font-size: 1.2em;
 
         button {
             width: 90%;
         }
     }
+  }
+
+  .page-section-pricing {
+      padding: 1rem 0 1rem 0;
+  }
+
+  .check-icon {
+      vertical-align: bottom;
   }

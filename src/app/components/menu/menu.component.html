@@ -26,8 +26,8 @@
         <a mat-line>Login</a>
       </span>
 
-      <span (click)="navigateTo('/planos')">
-        <a mat-line>Planos</a>
+      <span (click)="navigateTo('/assinatura')">
+        <a mat-line>Assinatura</a>
       </span>
 
       <span *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/logout')">
@@ -71,9 +71,9 @@
           <a mat-line>Login</a>
         </mat-list-item>
 
-        <mat-list-item (click)="navigateTo('/planos')">
+        <mat-list-item (click)="navigateTo('/assinatura')">
           <mat-icon mat-list-icon>rocket_launch</mat-icon>
-          <a mat-line>Planos</a>
+          <a mat-line>Assinatura</a>
         </mat-list-item>
 
         <mat-list-item *ngIf="loginService.waitForLogin() | async" (click)="navigateTo('/logout')">

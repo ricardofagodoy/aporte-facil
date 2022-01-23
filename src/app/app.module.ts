@@ -12,7 +12,7 @@ import { MenuComponent, FeedbackDialog } from './components/menu/menu.component'
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SobreComponent } from './components/sobre/sobre.component';
-import { PlanosComponent } from './components/planos/planos.component';
+import { AssinaturaComponent } from './components/assinatura/assinatura.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -54,7 +54,7 @@ import { ChartComponent } from './components/chart/chart.component';
     LoginComponent,
     LogoutComponent,
     SobreComponent,
-    PlanosComponent,
+    AssinaturaComponent,
     FeedbackDialog,
     ChartComponent
   ],
